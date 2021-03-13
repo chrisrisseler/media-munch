@@ -94,8 +94,15 @@ const handleFormSubmit = function (event) {
     refreshExamples();
   });
 
-  $exampleText.val('');
-  $exampleDescription.val('');
+  $exampleTitle.val('');
+  $exampleYear.val('');
+  $exampleAuthor.val('');
+  $exampleDirector.val('');
+  $exampleCast.val('');
+  $exampleGenre.val('');
+  $examplePlot.val('');
+  $exampleRating.val('');
+  $exampleReview.val('');
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
