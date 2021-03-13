@@ -7,7 +7,10 @@
     "start": "node server.js",
     "lint": "eslint . --ext .js --quiet",
     "fix": "eslint --fix .",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "start:css": "postcss index.css -o tailwind.css -w",
+    "build:css": "postcss index.css -o tailwind.css --env production",
+    "build:tailwind": "tailwind build public/assets/css/style.css -o public/assets/css/tailwind.css"
   },
   "repository": {
     "type": "git",
@@ -37,20 +40,26 @@
   },
   "homepage": "https://github.com/alperg/project2-starter-auth#readme",
   "dependencies": {
+    "autoprefixer": "^10.2.5",
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.3",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "^5.1.0",
+    "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
     "helmet": "^4.1.1",
     "moment": "^2.29.0",
     "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.3.5"
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.0",
+    "sequelize": "^6.5.0",
+    "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^7.9.0",
@@ -61,5 +70,6 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "prettier": "^2.1.2"
-  }
+  },
+  "tailwind:css": "postcss public/assets/css/tailwind.css -o public/assets/css/style.css"
 }
