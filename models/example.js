@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
     cast: DataTypes.TEXT,
     genre: DataTypes.STRING,
     synopsis: DataTypes.TEXT,
-    rating: DataTypes.STRING,
+    rating: DataTypes.INTEGER,
     review: DataTypes.TEXT
   });
 
