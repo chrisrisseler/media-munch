@@ -1,23 +1,22 @@
 {{> nav/nav-block}}
 
-<div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Example</h5>
-          <p>
-            <strong>ID</strong>: {{example.id}}</p>
-          <p>
-          <p>
-            <strong>Text</strong>: {{example.text}}</p>
-          <p>
-            <strong>Description:</strong> {{example.description}}</p>
-            <a href="/example">← Back To Home</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<section class="max-w-md w-full lg:flex">
+  <section class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug" id="card-img"></section>
+  <section class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+    <section class="mb-8">
+      <h3 class="text-black font-bold text-xl mb-2" name="card-title" id="card-title"></h3>
+      <p class="text-grey-darker text-base" name="year" id="year"><strong>Year</strong>: {{example.year}}</p>
+      <p class="text-grey-darker text-base" name="author" id="author"><strong>Author</strong>: {{example.author}}</p>
+      <p class="text-grey-darker text-base" name="director" id="director"><strong>Director</strong>: {{example.director}}</p>
+      <p class="text-grey-darker text-base" name="cast" id="cast"><strong>Cast</strong>: {{example.cast}}</p>
+      <p class="text-grey-darker text-base" name="genre" id="genre"><strong>Genre</strong>: {{example.genre}}</p>
+      <p class="text-grey-darker text-base" name="synopsis" id="synopsis"><strong>Synopsis</strong>: {{example.synopsis}}</p>
+      <p class="text-grey-darker text-base" name="my-rating" id="my-rating"><strong>My Rating</strong>: {{example.rating}}/p>
+      <p class="text-grey-darker text-base" name="my-review" id="my-review"><strong>Year</strong>: {{example.review}}</p>
+      {{example.id}}
+      <a href="/views/layouts/main.handlebars">← Back To Home</a>
+    </section>
+  </section>
+</section>
 
 {{> modal/login-block}}
