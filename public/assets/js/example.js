@@ -1,8 +1,16 @@
 // Get references to page elements
-const $exampleText = $('#example-text');
-const $exampleDescription = $('#example-description');
+const $exampleTitle = $('#card-title');
+const $exampleYear = $('#year');
+const $exampleAuthor = $('#author');
+const $exampleDirector = $('#director');
+const $exampleCast = $('#cast');
+const $exampleGenre = $('#genre');
+const $examplePlot = $('#synopsis');
+const $exampleRating = $('#my-rating');
+const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
+
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -65,8 +73,15 @@ const handleFormSubmit = function (event) {
   event.preventDefault();
 
   const example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim(),
+    title: $exampleTitle.val().trim(),
+    year: $exampleYear.val().trim(),
+    author: $exampleAuthor.val().trim(),
+    director: $exampleDirector.val().trim(),
+    cast: $exampleCast.val().trim(),
+    genre: $exampleGenre.val().trim(),
+    synopsis: $examplePlot.val().trim(),
+    rating: $exampleRating.val().trim(),
+    review: $exampleReview.val().trim(),
     UserId: window.userId
   };
 
