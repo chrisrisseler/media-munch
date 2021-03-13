@@ -1,0 +1,10 @@
+/* Injects base, components, and utlities styles from Tailwind CSS
+into our CSS. These become actual CSS at runtime. */
+@import "tailwindcss/base";
+
+#toggle:checked ~ label section.toggle-dot {
+    @apply translate-x-3;
+}
+
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
