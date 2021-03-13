@@ -6,7 +6,7 @@
   <!-- max-w-xs sets the max width to extra small, i.e. 2rem -->
   <!-- m-auto applies margin-auto around each side of the form to center it -->
   <!-- rounded-lg applies increased border radius and p-5 defines even padding around the form -->
-  <section class="w-full max-w-xs m-auto bg-indigo-100 rounded-lg p-5">   
+  <section class="w-full max-w-xs m-auto mt-32 bg-indigo-100 rounded-lg p-5">   
     <header>
       <!-- mx-auto sets x-axis margin as auto to ensure the logo is center aligned -->
       <!-- mb-5 sets margin-bottom at 1.25rem -->
@@ -15,9 +15,21 @@
     <form action="#" method="POST">
       <section>
         <!-- block sets input label to display:block so it displays above the input box -->
-        <label class="block mb-2 text-indigo-500" for="username">Username</label>
+        <label class="block mb-2 text-indigo-500" for="username">First Name</label>
         <!-- p-2 sets padding at 0.5rem -->
+        <input class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded" type="text" name="username" placeholder="First Name">
+      </section>
+      <section>
+        <label class="block mb-2 text-indigo-500" for="username">Last Name</label>
+        <input class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded" type="text" name="username" placeholder="Last Name">
+      </section>
+      <section>
+        <label class="block mb-2 text-indigo-500" for="username">Username</label>
         <input class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded" type="text" name="username" placeholder="Username">
+      </section>
+      <section>
+        <label class="block mb-2 text-indigo-500" for="username">Email</label>
+        <input class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded" type="email" name="email" placeholder="Email">
       </section>
       <section>
         <label class="block mb-2 text-indigo-500" for="password">Password</label>
@@ -27,9 +39,5 @@
         <input class="w-full bg-indigo-700 hover:bg-indigo-400 text-white font-bold py-2 px-4 mb-6 rounded" type="submit">
       </section>       
     </form>
-    <footer>
-      <a class="text-indigo-700 hover:text-indigo-400 text-sm float-left" href="#">Forgot Password?</a>
-      <a class="text-indigo-700 hover:text-indigo-400 text-sm float-right" href="#">Create Account</a>
-    </footer> 
   </section>
 </body>
