@@ -20,4 +20,5 @@ module.exports = (db) => {
         review: "Wild, Anna Biller-esque retro-mod fever dream." 
       });
     });
-  };
+  });
+};

@@ -7,12 +7,49 @@
         <h2>{{msg}}</h2>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <label for="card-title">Example Text</label>
+            <input type="text" id="card-title" class="form-control" aria-describedby="card-title"
+              placeholder="Enter Example Title">
           </div>
           <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <label for="year">Example Year</label>
+            <textarea class="form-control" id="year" aria-describedby="year"
+              placeholder="Enter Example Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="author">Example Author</label>
+            <textarea class="form-control" id="author" aria-describedby="author"
+              placeholder="Enter Example Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="director">Example Director</label>
+            <textarea class="form-control" id="director" aria-describedby="director"
+              placeholder="Enter Example Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="cast">Example Cast</label>
+            <textarea class="form-control" id="cast" aria-describedby="cast"
+              placeholder="Enter Example Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="genre">Example Genre</label>
+            <textarea class="form-control" id="genre" aria-describedby="genre"
+              placeholder="Enter Example Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="synopsis">Example Synopsis</label>
+            <textarea class="form-control" id="synopsis" aria-describedby="synopsis"
+              placeholder="Enter Example Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="my-rating">Example Rating</label>
+            <textarea class="form-control" id="my-rating" aria-describedby="my-rating"
+              placeholder="Enter Example Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="my-review">Example Review</label>
+            <textarea class="form-control" id="my-review" aria-describedby="my-review"
+              placeholder="Enter Example Description"></textarea>
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
@@ -35,5 +72,5 @@
 {{> modal/login-block}}
 
 <script>
-  var userId = {{userInfo.id}};
+  var userId = {{ userInfo.id }};
 </script>
