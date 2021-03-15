@@ -95,6 +95,16 @@ $('#confirm-delete').on('click', function (event) {
   }
 });
 
+$('#loginBtn').on('click', function (event) {
+  console.log($('#login-modal'));
+  $('#login-modal').removeClass('invisible');
+});
+
+$('#registerBtn').on('click', function (event) {
+  console.log($('#register-modal'));
+  $('#register-modal').removeClass('invisible');
+});
+
 $('#register').on('click', function (event) {
   event.preventDefault();
   window.location.href = '/register';
