@@ -4,20 +4,18 @@
       <section class="flex justify-start lg:w-0 lg:flex-1">
         <section class="flex flex-col space-y-12 m-auto max-w-5x1 mt-12">
           <section class="flex justify-end items-center space-x-2">
-            <a href="/views/partials/modal/login-block.handlebars"
-              class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+            <button id="loginBtn" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
               Login
-            </a><a href="/views/register.handlebars"
-              class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+            </button><button id="registerBtn" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
               Register
-            </a>
+            </button>
           </section>
         </section>
       </section>
     </section>
   </section>
 
-  <ul class="nav navbar-nav ml-auto">
+  {{!-- <ul class="nav navbar-nav ml-auto">
     {{#if isloggedin}}
     <li class="nav-item">
       <a class="nav-link" href="/example">Example page</a>
@@ -36,6 +34,6 @@
       <a class="nav-link" href="/register" data-register={{register}}>Register</a>
     </li>
     {{/if}}
-  </ul>
+  </ul> --}}
 </nav>
 
