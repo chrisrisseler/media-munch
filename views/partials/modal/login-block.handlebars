@@ -27,7 +27,9 @@
         From: "opacity-100 translate-y-0 sm:scale-100"
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
-    <section class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+    <section class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" 
+    id="login-modal"
+    role="dialog" aria-modal="true" aria-labelledby="modal-headline">
       <section class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 md:p-12 md:pb-8 lg:p-24 lg:pb-16">
         <section class="flex justify-center sm:flex sm:items-start">
           <form action="#" method="POST">
@@ -42,7 +44,9 @@
               <input class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded" type="password" name="password" placeholder="Password" />
             </section>
             <section class="bg-white-50 px-4 py-3 sm:px-12 sm:flex sm:flex-row-reverse">
-              <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
+              <button type="button" 
+              id="login"
+              class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
             </section>
           </form>
         </section>
