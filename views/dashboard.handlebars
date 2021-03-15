@@ -2,9 +2,46 @@
 
 {{!-- <div id="main-container" class="container">
   <div class="jumbotron text-center header-wrap" align="center">
-    <p class="lead">Welcome to <strong>Sample App</strong></p>
+    {{!-- <p class="lead">Welcome to <strong>Sample App</strong></p> --}}
     <hr class="my-4">
-    <div>
+    
+    <section class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+    <section class="relative py-3 sm:max-w-xl sm:mx-auto">
+      <section class="absolute inset-0 bg-gradient-to-r from-purple-400 to-light-purple-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></section>
+      <section class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+        <section class="max-w-md mx-auto">
+              <section
+                class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                <!-- Heroicon name: outline/exclamation -->
+                <svg class="h-6 w-6 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </section>
+              <section class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                <h3 class="text-lg text-center leading-6 font-medium text-gray-900" id="modal-headline">
+                  Media Munch
+                </h3>
+          <section class="sectionide-y sectionide-gray-200">
+            <section class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet urna tortor. Praesent id massa ac sapien tincidunt semper. Nunc convallis neque ut tortor blandit, non sagittis ante pulvinar. Maecenas id eros a elit blandit suscipit condimentum ac lectus. Phasellus rhoncus lacinia neque at condimentum. Integer non bibendum urna.</p>
+            </section>
+            <div>
+                  {{#if isloggedin}}
+                  You are logged in as {{user.firstName}}
+                  <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
+                  {{else}}
+                 <p>You need to log in to use this app.</p>
+                  {{/if}}
+                  <h5 id="login-err-msg"></h5>
+              </div>
+          </section>
+        </section>
+      </section>
+    </section>
+  </section>
+    {{!-- <div>
       {{#if isloggedin}}
         You are logged in as {{user.firstName}}
         <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
