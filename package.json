@@ -10,7 +10,7 @@
     "test": "npm run lint",
     "start:css": "postcss index.css -o tailwind.css -w",
     "build:css": "postcss index.css -o tailwind.css --env production",
-    "build:tailwind": "tailwind build public/assets/css/style.css -o public/assets/css/tailwind.css"
+    "build:tailwind": "tailwind build public/assets/css/tailwind.css -o public/assets/css/style.css"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/alperg/project2-starter-auth#readme",
   "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
     "autoprefixer": "^10.2.5",
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.3",
