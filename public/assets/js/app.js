@@ -129,12 +129,31 @@ $('#login').on('click', function (event) {
   };
 
   $.post('/api/login', user, (result) => {
-    // console.log(result);
+    console.log(result);
     if (result.loggedIn) {
       $(document.location).attr('href', '/dashboard');
     } else {
       $('#login-err-msg').empty('').text(result.error);
       $('#user-info').removeClass('invisible');
     }
+  });
+});
+
+$('#login-close').on('click', function (event) {
+  event.preventDefault();
+  $('#login-modal').addClass('invisible');
+});
+
+$('#register-close').on('click', function (event) {
+  event.preventDefault();
+  $('#register-modal').addClass('invisible');
+});
+
+$('#logoutBtn').on('click', function (event) {
+  event.preventDefault();
+
+  $.get('/logout', (result) => {
+    console.log(result);
+    $(document.location).attr('href', '/');
   });
 });
