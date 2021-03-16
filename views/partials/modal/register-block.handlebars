@@ -1,4 +1,3 @@
-
 <section
   class="invisible fixed z-10 inset-0 overflow-y-auto"
   id="register-modal"
@@ -42,8 +41,23 @@
       <section
         class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 md:p-12 md:pb-8 lg:p-24 lg:pb-16"
       >
+        <section
+          class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-gray text-sm z-50"
+        >
+          <svg
+            class="fill-current text-gray"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+          >
+            <path
+              d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+            ></path>
+          </svg>
+        </section>
         <section class="flex justify-center sm:flex sm:items-start">
-          <form action="#" method="POST" id="register-modal" class=>
+          <form action="#" method="POST" id="register-modal" class>
             <section class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <!-- block sets input label to display:block so it displays above the input box -->
               <section>
@@ -60,18 +74,18 @@
                   id="inputFirst"
                 />
                 <section>
-                <label class="block mb-2 text-indigo-500" for="username">
-                  Last Name
-                </label>
-                <input
-                  class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded"
-                  type="text"
-                  name="username"
-                  placeholder="Last Name"
-                  id="inputLast"
-                />
-              </section>
-              {{!-- <section>
+                  <label class="block mb-2 text-indigo-500" for="username">
+                    Last Name
+                  </label>
+                  <input
+                    class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded"
+                    type="text"
+                    name="username"
+                    placeholder="Last Name"
+                    id="inputLast"
+                  />
+                </section>
+                {{! <section>
                 <label class="block mb-2 text-indigo-500" for="username">
                   Username
                 </label>
@@ -81,40 +95,40 @@
                   name="username"
                   placeholder="Username"
                 />
-              </section> --}}
-              <section>
-                <label class="block mb-2 text-indigo-500" for="username">
-                  Email
-                </label>
-                <input
-                  class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  id="inputEmail"
-                />
-              </section>
-              <section>
-                <label class="block mb-2 text-indigo-500" for="password">
-                  Password
-                </label>
-                <input
-                  class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  id="inputPassword"
-                />
-              </section>
-              <section>
-                <input
-                  class="w-full bg-indigo-700 hover:bg-indigo-400 text-white font-bold py-2 px-4 mb-6 rounded"
-                  type="submit" id="add-user"
-                />
+              </section> }}
+                <section>
+                  <label class="block mb-2 text-indigo-500" for="username">
+                    Email
+                  </label>
+                  <input
+                    class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    id="inputEmail"
+                  />
+                </section>
+                <section>
+                  <label class="block mb-2 text-indigo-500" for="password">
+                    Password
+                  </label>
+                  <input
+                    class="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300 rounded"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    id="inputPassword"
+                  />
+                </section>
+                <section>
+                  <input
+                    class="w-full bg-indigo-700 hover:bg-indigo-400 text-white font-bold py-2 px-4 mb-6 rounded"
+                    type="submit"
+                    id="add-user"
+                  />
+                </section>
               </section>
             </section>
-              </section>
-              
           </form>
         </section>
       </section>
