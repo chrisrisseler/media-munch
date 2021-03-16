@@ -32,7 +32,7 @@
           <div>
             {{#if isloggedin}}
             You are logged in as {{user.firstName}}
-            <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
+            <a href="/logout"> <button type="btn" class="btn" id="logoutBtn">Logout</button></a>
             {{else}}
             <p>You need to log in to use this app.</p>
             {{/if}}
