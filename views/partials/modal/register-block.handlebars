@@ -57,6 +57,7 @@
                   type="text"
                   name="username"
                   placeholder="First Name"
+                  id="inputFirst"
                 />
                 <section>
                 <label class="block mb-2 text-indigo-500" for="username">
@@ -67,9 +68,10 @@
                   type="text"
                   name="username"
                   placeholder="Last Name"
+                  id="inputLast"
                 />
               </section>
-              <section>
+              {{!-- <section>
                 <label class="block mb-2 text-indigo-500" for="username">
                   Username
                 </label>
@@ -79,7 +81,7 @@
                   name="username"
                   placeholder="Username"
                 />
-              </section>
+              </section> --}}
               <section>
                 <label class="block mb-2 text-indigo-500" for="username">
                   Email
@@ -89,6 +91,7 @@
                   type="email"
                   name="email"
                   placeholder="Email"
+                  id="inputEmail"
                 />
               </section>
               <section>
@@ -100,12 +103,13 @@
                   type="password"
                   name="password"
                   placeholder="Password"
+                  id="inputPassword"
                 />
               </section>
               <section>
                 <input
                   class="w-full bg-indigo-700 hover:bg-indigo-400 text-white font-bold py-2 px-4 mb-6 rounded"
-                  type="submit"
+                  type="submit" id="add-user"
                 />
               </section>
             </section>
