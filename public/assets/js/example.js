@@ -11,7 +11,6 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 
-
 // The API object contains methods for each kind of request we'll make
 const API = {
   saveExample: function (example) {
@@ -85,10 +84,10 @@ const handleFormSubmit = function (event) {
     UserId: window.userId
   };
 
-  if (!(example.text && example.description)) {
-    alert('You must enter an example text and description!');
-    return;
-  }
+  // if (!(example.text && example.description)) {
+  //   alert('You must enter an example text and description!');
+  //   return;
+  // }
 
   API.saveExample(example).then(function () {
     refreshExamples();
