@@ -10,17 +10,59 @@ const $exampleRating = $('#my-rating');
 const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
+const example = {};
+let movieTitle;
+let movieYear;
+let movieWriter;
+let movieDirector;
+let movieCast;
+let movieGenre;
 
-const findMovie = function () {
+const displayOptions = function (response) {
+
+
+
+};
+
+const getID = function (response) {
+  return response.imdbID
+};
+
+const findMovie = function (search) {
+  //temp search box id
+  const searchTerm = $(".search-box").val().trim()
+  let searchQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&s=" + searchTerm
+
   $.ajax({
-    url: 'https://www.omdbapi.com/?s=batman&filter_sort_order=asc&apikey=c2a157c7',
+    url: searchQueryUrl,
     method: 'GET'
   }).then((response) => {
+    displayOptions(response)
+
     console.log(response);
   });
 };
 
 findMovie();
+
+const getMovieDetails = function () {
+
+  let detailQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&i=" + getID()
+
+  $.ajax({
+    url: detailQueryUrl,
+    method: 'GET'
+  }).then((response) => {
+    movieTitle = response.Title
+    movieYear = response.Year
+    movieWriter = response.Writer
+    movieDirector = response.Director
+    movieCast = response.Actors
+    movieGenre = response.Genre
+
+    console.log(response);
+  });
+}
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -82,13 +124,13 @@ const refreshExamples = function () {
 const handleFormSubmit = function (event) {
   event.preventDefault();
 
-  const example = {
-    title: $exampleTitle.val().trim(),
-    year: $exampleYear.val().trim(),
-    author: $exampleAuthor.val().trim(),
-    director: $exampleDirector.val().trim(),
-    cast: $exampleCast.val().trim(),
-    genre: $exampleGenre.val().trim(),
+  example = {
+    title: movieTitle,
+    year: movieYear,
+    author: movieWriter,
+    director: movieDirector,
+    cast: movieCast,
+    genre: movieGenre,
     synopsis: $examplePlot.val().trim(),
     rating: $exampleRating.val().trim(),
     review: $exampleReview.val().trim(),
@@ -128,3 +170,4 @@ const handleDeleteBtnClick = function () {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
+
