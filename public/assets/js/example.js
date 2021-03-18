@@ -18,9 +18,8 @@ let movieDirector;
 let movieCast;
 let movieGenre;
 
-const displayOptions = function (response) {
 
-};
+const displayOptions = function (response) {};
 
 const getID = function (response) {
   return response.imdbID;
