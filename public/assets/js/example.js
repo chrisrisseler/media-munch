@@ -10,7 +10,7 @@ const $exampleRating = $('#my-rating');
 const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
-const example = {};
+let example = {};
 let movieTitle;
 let movieYear;
 let movieWriter;
@@ -18,26 +18,23 @@ let movieDirector;
 let movieCast;
 let movieGenre;
 
-const displayOptions = function (response) {
 
-
-
-};
+const displayOptions = function (response) {};
 
 const getID = function (response) {
-  return response.imdbID
+  return response.imdbID;
 };
 
 const findMovie = function (search) {
-  //temp search box id
-  const searchTerm = $(".search-box").val().trim()
-  let searchQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&s=" + searchTerm
+  // temp search box id
+  const searchTerm = $('.search-box').val().trim();
+  const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
 
   $.ajax({
     url: searchQueryUrl,
     method: 'GET'
   }).then((response) => {
-    displayOptions(response)
+    displayOptions(response);
 
     console.log(response);
   });
@@ -46,23 +43,22 @@ const findMovie = function (search) {
 findMovie();
 
 const getMovieDetails = function () {
-
-  let detailQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&i=" + getID()
+  const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + getID();
 
   $.ajax({
     url: detailQueryUrl,
     method: 'GET'
   }).then((response) => {
-    movieTitle = response.Title
-    movieYear = response.Year
-    movieWriter = response.Writer
-    movieDirector = response.Director
-    movieCast = response.Actors
-    movieGenre = response.Genre
+    movieTitle = response.Title;
+    movieYear = response.Year;
+    movieWriter = response.Writer;
+    movieDirector = response.Director;
+    movieCast = response.Actors;
+    movieGenre = response.Genre;
 
     console.log(response);
   });
-}
+};
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -170,4 +166,3 @@ const handleDeleteBtnClick = function () {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
-
