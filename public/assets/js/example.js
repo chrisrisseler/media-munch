@@ -11,6 +11,17 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 
+const findMovie = function () {
+  $.ajax({
+    url: 'https://www.omdbapi.com/?s=batman&filter_sort_order=asc&apikey=c2a157c7',
+    method: 'GET'
+  }).then((response) => {
+    console.log(response);
+  });
+};
+
+findMovie();
+
 // The API object contains methods for each kind of request we'll make
 const API = {
   saveExample: function (example) {
