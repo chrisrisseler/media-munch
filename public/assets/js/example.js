@@ -10,7 +10,7 @@ const $exampleRating = $('#my-rating');
 const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
-let example = {};
+const example = {};
 let movieTitle;
 let movieYear;
 let movieWriter;
@@ -19,22 +19,51 @@ let movieCast;
 let movieGenre;
 
 
-const displayOptions = function (response) {};
+const displayOptions = function (response) {
+  $("").empty(); //plug in the html of the unordered list of movies
+  for (let i=0 ; i<response.length ; i++) {
+    let currentMovie = response[i];
+    let currentTitle = currentMovie.Title;
+    let currentYear = currentMovie.Year;
+    let currentPoster = currentMovie.Poster;
+
+    let newMovie = document.createElement("li");
+    newMovie.classList += ""; //Would add any classes needed to add for styling/positioning/etc of the list item
+    newMovie.id = "movie-number"+i; //Would be the ID of each movie on the list displayed
+
+    document.getElementById("").appendChild(newMovie); //Whatever the name of the UL on the page would go here
+
+    //Would need classes and or ids to set up css in this.
+    let currentMovieHTML = 
+    `
+    <div>
+      <h4>${currentTitle}</h4>
+      <p>${currentYear}</p>
+      <img src="${currentPoster}">
+    </div>
+    `;
+
+    //Would add the movie div to the list item in the unordered list
+    $("#"+newMovie.id).append(currentMovieHTML);
+  }
+
+
+};
 
 const getID = function (response) {
   return response.imdbID;
 };
 
 const findMovie = function (search) {
-  // temp search box id
-  const searchTerm = $('.search-box').val().trim();
-  const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
+  //temp search box id
+  const searchTerm = $(".search-box").val().trim();
+  let searchQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&s=" + searchTerm;
 
   $.ajax({
     url: searchQueryUrl,
     method: 'GET'
   }).then((response) => {
-    displayOptions(response);
+    displayOptions(response)
 
     console.log(response);
   });
@@ -43,7 +72,8 @@ const findMovie = function (search) {
 findMovie();
 
 const getMovieDetails = function () {
-  const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + getID();
+
+  let detailQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&i=" + getID();
 
   $.ajax({
     url: detailQueryUrl,
@@ -58,7 +88,7 @@ const getMovieDetails = function () {
 
     console.log(response);
   });
-};
+}
 
 // The API object contains methods for each kind of request we'll make
 const API = {
@@ -120,13 +150,13 @@ const refreshExamples = function () {
 const handleFormSubmit = function (event) {
   event.preventDefault();
 
-  const example = {
-    title: $exampleTitle.val().trim(),
-    year: $exampleYear.val().trim(),
-    author: $exampleAuthor.val().trim(),
-    director: $exampleDirector.val().trim(),
-    cast: $exampleCast.val().trim(),
-    genre: $exampleGenre.val().trim(),
+  example = {
+    title: movieTitle,
+    year: movieYear,
+    author: movieWriter,
+    director: movieDirector,
+    cast: movieCast,
+    genre: movieGenre,
     synopsis: $examplePlot.val().trim(),
     rating: $exampleRating.val().trim(),
     review: $exampleReview.val().trim(),
@@ -166,3 +196,4 @@ const handleDeleteBtnClick = function () {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
+$searchBtn.on('click', findMovie);
