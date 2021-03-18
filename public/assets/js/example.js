@@ -10,6 +10,8 @@ const $exampleRating = $('#my-rating');
 const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
+const $searchBtn = $('#searchBtn');
+
 let example = {};
 let movieTitle;
 let movieYear;
@@ -56,7 +58,7 @@ const getID = function (response) {
 
 const findMovie = function (search) {
   // temp search box id
-  const searchTerm = $('.search-box').val().trim();
+  const searchTerm = $('.search-box').val();
   const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
 
   $.ajax({
