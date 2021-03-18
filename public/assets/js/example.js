@@ -49,11 +49,7 @@ const displayOptions = function (response) {
   }
 };
 
-const getID = function (response) {
-  return response.imdbID;
-};
-
-const findMovie = function (search) {
+const findMovie = function () {
   // temp search box id
   const searchTerm = $('#search-box').val();
   const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
@@ -63,13 +59,13 @@ const findMovie = function (search) {
     method: 'GET'
   }).then((response) => {
     displayOptions(response);
-
+    getMovieDetails(response.Search[0].imdbID);
     console.log(response);
   });
 };
 
-const getMovieDetails = function () {
-  const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + getID();
+const getMovieDetails = function (id) {
+  const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + id;
 
   $.ajax({
     url: detailQueryUrl,
@@ -158,6 +154,7 @@ const handleFormSubmit = function (event) {
     review: $exampleReview.val().trim(),
     UserId: window.userId
   };
+  console.log(example);
 
   // if (!(example.text && example.description)) {
   //   alert('You must enter an example text and description!');
