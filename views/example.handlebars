@@ -1,71 +1,98 @@
 {{> nav/nav-block}}
 
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h2>{{msg}}</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="card-title">Example Text</label>
-            <input type="text" id="card-title" class="form-control" aria-describedby="card-title"
-              placeholder="Enter Example Title">
-          </div>
-          <div class="form-group">
-            <label for="year">Example Year</label>
-            <textarea class="form-control" id="year" aria-describedby="year"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="author">Example Author</label>
-            <textarea class="form-control" id="author" aria-describedby="author"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="director">Example Director</label>
-            <textarea class="form-control" id="director" aria-describedby="director"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="cast">Example Cast</label>
-            <textarea class="form-control" id="cast" aria-describedby="cast"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="genre">Example Genre</label>
-            <textarea class="form-control" id="genre" aria-describedby="genre"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="synopsis">Example Synopsis</label>
-            <textarea class="form-control" id="synopsis" aria-describedby="synopsis"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="my-rating">Example Rating</label>
-            <textarea class="form-control" id="my-rating" aria-describedby="my-rating"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="my-review">Example Review</label>
-            <textarea class="form-control" id="my-review" aria-describedby="my-review"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h4>Examples belong to this user:</h4>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<section id="home">
+  <section class="row">
+    <section class="col-8 offset-2">
+
+      <!-- Search -->
+      <section class="relative mr-6 my-2">
+        <input type="search" class="bg-purple-white shadow rounded border-0 p-3" placeholder="Search by name...">
+        <button class="pin-r pin-t mt-3 mr-4 text-purple-lighter" id="searchBtn">
+          <svg version="1.1" class="h-4 text-dark" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 52.966 52.966"
+            style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
+            <path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+        c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+        C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+        S32.459,40,21.983,40z" />
+          </svg>
+        </button>
+      </section>
+      <h2>{{msg}}</h2>
+      <form class="clearfix mb-4" action="POST">
+        <section class="form-group">
+          <label for="synopsis">Synopsis</label>
+          <textarea class="form-control" id="synopsis" aria-describedby="synopsis"
+            placeholder="Enter Synopsis"></textarea>
+        </section>
+        <section class="form-group">
+          <label for="my-rating">Rating</label>
+          <textarea class="form-control" id="my-rating" aria-describedby="my-rating"
+            placeholder="Enter Rating"></textarea>
+        </section>
+        <section class="form-group">
+          <label for="my-review">Review</label>
+          <textarea class="form-control" id="my-review" aria-describedby="my-review"
+            placeholder="Enter Description"></textarea>
+        </section>
+        <button id="submit" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
+      </form>
+    </section>
+  </section>
+</section>
+
+<!-- Results -->
+<section class="invisible bg-white shadow overflow-hidden sm:rounded-lg">
+  <section class="px-4 py-5 sm:px-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">
+      Results
+    </h3>
+  </section>
+  <section class="border-t border-gray-200">
+    <dl>
+      <section class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Full name
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          Margot Foster
+        </dd>
+      </section>
+      <section class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Application for
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          Backend Developer
+        </dd>
+      </section>
+      <section class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Email address
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          margotfoster@example.com
+        </dd>
+      </section>
+      <section class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Salary expectation
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          $120,000
+        </dd>
+      </section>
+      <section class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          About
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat.
+        </dd>
+      </section>
+    </dl>
+  </section>
+</section>
 
 <script src="/assets/js/example.js"></script>
 
