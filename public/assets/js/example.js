@@ -124,13 +124,13 @@ const refreshExamples = function () {
 const handleFormSubmit = function (event) {
   event.preventDefault();
 
-  example = {
-    title: movieTitle,
-    year: movieYear,
-    author: movieWriter,
-    director: movieDirector,
-    cast: movieCast,
-    genre: movieGenre,
+  const example = {
+    title: $exampleTitle.val().trim(),
+    year: $exampleYear.val().trim(),
+    author: $exampleAuthor.val().trim(),
+    director: $exampleDirector.val().trim(),
+    cast: $exampleCast.val().trim(),
+    genre: $exampleGenre.val().trim(),
     synopsis: $examplePlot.val().trim(),
     rating: $exampleRating.val().trim(),
     review: $exampleReview.val().trim(),
