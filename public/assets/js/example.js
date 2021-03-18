@@ -10,7 +10,7 @@ const $exampleRating = $('#my-rating');
 const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
-const example = {};
+let example = {};
 let movieTitle;
 let movieYear;
 let movieWriter;
@@ -56,14 +56,14 @@ const getID = function (response) {
 
 const findMovie = function (search) {
   //temp search box id
-  const searchTerm = $(".search-box").val().trim();
-  let searchQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&s=" + searchTerm;
+  const searchTerm = $('.search-box').val().trim();
+  let searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
 
   $.ajax({
     url: searchQueryUrl,
     method: 'GET'
   }).then((response) => {
-    displayOptions(response)
+    displayOptions(response);
 
     console.log(response);
   });
@@ -73,7 +73,7 @@ findMovie();
 
 const getMovieDetails = function () {
 
-  let detailQueryUrl = "http://www.omdbapi.com/?apikey=f5874e7b&i=" + getID();
+  let detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + getID();
 
   $.ajax({
     url: detailQueryUrl,
@@ -88,7 +88,7 @@ const getMovieDetails = function () {
 
     console.log(response);
   });
-}
+};
 
 // The API object contains methods for each kind of request we'll make
 const API = {
