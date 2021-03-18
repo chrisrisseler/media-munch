@@ -55,9 +55,9 @@ const getID = function (response) {
 };
 
 const findMovie = function (search) {
-  //temp search box id
+  // temp search box id
   const searchTerm = $('.search-box').val().trim();
-  let searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
+  const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
 
   $.ajax({
     url: searchQueryUrl,
@@ -73,7 +73,7 @@ findMovie();
 
 const getMovieDetails = function () {
 
-  let detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + getID();
+  const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + getID();
 
   $.ajax({
     url: detailQueryUrl,
