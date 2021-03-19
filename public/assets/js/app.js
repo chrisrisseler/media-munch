@@ -157,3 +157,8 @@ $('#logoutBtn').on('click', function (event) {
     $(document.location).attr('href', '/');
   });
 });
+
+$('#searchBtn').on('click', function (event) {
+  event.preventDefault();
+  $('#findMovie').removeClass('invisible');
+});

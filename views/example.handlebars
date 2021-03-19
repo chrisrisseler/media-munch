@@ -6,7 +6,8 @@
 
       <!-- Search -->
       <section class="relative mr-6 my-2">
-        <input type="search" class="bg-purple-white shadow rounded border-0 p-3" id="search-box" placeholder="Search by name...">
+        <input type="search" class="bg-purple-white shadow rounded border-0 p-3" id="search-box"
+          placeholder="Search by name...">
         <button class="pin-r pin-t mt-3 mr-4 text-purple-lighter" id="searchBtn">
           <svg version="1.1" class="h-4 text-dark" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 52.966 52.966"
@@ -19,80 +20,49 @@
         </button>
       </section>
       <h2>{{msg}}</h2>
-      <form class="clearfix mb-4" action="POST">
+      <form class="clearfix mb-4" action="POST" id="results">
         <section class="form-group">
           <label for="synopsis">Synopsis</label>
-          <textarea class="form-control" id="synopsis" aria-describedby="synopsis"
-            placeholder="Enter Synopsis"></textarea>
+          <input class="form-control" id="synopsis" aria-describedby="synopsis"
+            placeholder="Enter Synopsis"></input>
         </section>
         <section class="form-group">
           <label for="my-rating">Rating</label>
-          <textarea class="form-control" id="my-rating" aria-describedby="my-rating"
-            placeholder="Enter Rating"></textarea>
+          <input class="form-control" id="my-rating" aria-describedby="my-rating"
+            placeholder="Enter Rating"></input>
         </section>
         <section class="form-group">
           <label for="my-review">Review</label>
-          <textarea class="form-control" id="my-review" aria-describedby="my-review"
-            placeholder="Enter Description"></textarea>
+          <input class="form-control" id="my-review" aria-describedby="my-review"
+            placeholder="Enter Description"></input>
         </section>
-        <button id="submit" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
+        <button id="submit"
+          class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
       </form>
     </section>
   </section>
 </section>
 
+
 <!-- Results -->
-<section class="invisible bg-white shadow overflow-hidden sm:rounded-lg">
+<section class="invisible bg-white shadow overflow-hidden sm:rounded-lg" id="findMovie">
   <section class="px-4 py-5 sm:px-6">
     <h3 class="text-lg leading-6 font-medium text-gray-900">
       Results
     </h3>
   </section>
   <section class="border-t border-gray-200">
-    <dl>
-      <section class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
-          Full name
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          Margot Foster
-        </dd>
-      </section>
-      <section class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
-          Application for
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          Backend Developer
-        </dd>
-      </section>
-      <section class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
-          Email address
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          margotfoster@example.com
-        </dd>
-      </section>
-      <section class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
-          Salary expectation
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          $120,000
-        </dd>
-      </section>
-      <section class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
-          About
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat.
-        </dd>
-      </section>
-    </dl>
+    <ul class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      {{#each results }}
+        <li class="text-sm font-medium text-gray-500">
+          {{ results.synopsis }}
+          {{ results.my-rating }}
+          {{ results.my-review }}
+        </li>
+    </ul>
   </section>
 </section>
+{{/each}}
 
 <script src="/assets/js/example.js"></script>
 

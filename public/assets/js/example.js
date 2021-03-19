@@ -10,8 +10,6 @@ const $exampleRating = $('#my-rating');
 const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
-const $searchBtn = $('#searchBtn');
-
 let example = {};
 let movieTitle;
 let movieYear;
@@ -20,39 +18,13 @@ let movieDirector;
 let movieCast;
 let movieGenre;
 
-const displayOptions = function (response) {
-  $('').empty(); // plug in the html of the unordered list of movies
-  for (let i = 0; i < response.length; i++) {
-    const currentMovie = response[i];
-    const currentTitle = currentMovie.Title;
-    const currentYear = currentMovie.Year;
-    const currentPoster = currentMovie.Poster;
-
-    const newMovie = document.createElement('li');
-    newMovie.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
-    newMovie.id = 'movie-number' + i; // Would be the ID of each movie on the list displayed
-
-    document.getElementById('').appendChild(newMovie); // Whatever the name of the UL on the page would go here
-
-    // Would need classes and or ids to set up css in this.
-    const currentMovieHTML =
-      `
-    <div>
-      <h4>${currentTitle}</h4>
-      <p>${currentYear}</p>
-      <img src="${currentPoster}">
-    </div>
-    `;
-
-    // Would add the movie div to the list item in the unordered list
-    $('#' + newMovie.id).append(currentMovieHTML);
-  }
-};
+const displayOptions = function (response) {};
 
 const findMovie = function () {
   // temp search box id
-  const searchTerm = $('#search-box').val();
-  const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
+  const searchTerm = $('.search-box').val().trim();
+  const searchQueryUrl =
+    'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
 
   $.ajax({
     url: searchQueryUrl,
@@ -189,4 +161,3 @@ const handleDeleteBtnClick = function () {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
-$searchBtn.on('click', findMovie);
