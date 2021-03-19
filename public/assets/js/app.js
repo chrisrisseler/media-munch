@@ -158,7 +158,7 @@ $('#logoutBtn').on('click', function (event) {
   });
 });
 
-$('#searchBtn').on('click', function (event) {
-  event.preventDefault();
-  $('#findMovie').removeClass('invisible');
-});
+// $('#searchBtn').on('click', function (event) {
+//   event.preventDefault();
+//   $('#findMovie').removeClass('invisible');
+// });
