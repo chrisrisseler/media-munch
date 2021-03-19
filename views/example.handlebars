@@ -20,7 +20,7 @@
         </button>
       </section>
       <h2>{{msg}}</h2>
-      <form class="clearfix mb-4" action="POST" id="results">
+      <form class="clearfix mb-4" action="POST" id="add-form">
         <section class="form-group">
           <label for="synopsis">Synopsis</label>
           <input class="form-control" id="synopsis" aria-describedby="synopsis"
@@ -51,18 +51,11 @@
       Results
     </h3>
   </section>
-  <section class="border-t border-gray-200">
-    <ul class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-      {{#each results }}
-        <li class="text-sm font-medium text-gray-500">
-          {{ results.synopsis }}
-          {{ results.my-rating }}
-          {{ results.my-review }}
-        </li>
-    </ul>
+  <section class="border-t border-gray-200" >
+    <ul id="search-results"></ul>
   </section>
 </section>
-{{/each}}
+{{!-- {{/each}} --}}
 
 <script src="/assets/js/example.js"></script>
 

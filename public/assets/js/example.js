@@ -21,9 +21,11 @@ let movieCast;
 let movieGenre;
 
 const displayOptions = function (response) {
-  $('').empty(); // plug in the html of the unordered list of movies
-  for (let i = 0; i < response.length; i++) {
-    const currentMovie = response[i];
+  $('#search-results').empty(); // plug in the html of the unordered list of movies
+  console.log(response.Search.length);
+  for (let i = 0; i < response.Search.length; i++) {
+    const currentMovie = response.Search[i];
+    console.log(response);
     const currentTitle = currentMovie.Title;
     const currentYear = currentMovie.Year;
     const currentPoster = currentMovie.Poster;
@@ -31,8 +33,6 @@ const displayOptions = function (response) {
     const newMovie = document.createElement('li');
     newMovie.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
     newMovie.id = 'movie-number' + i; // Would be the ID of each movie on the list displayed
-
-    document.getElementById('').appendChild(newMovie); // Whatever the name of the UL on the page would go here
 
     // Would need classes and or ids to set up css in this.
     const currentMovieHTML =
@@ -44,8 +44,7 @@ const displayOptions = function (response) {
     </div>
     `;
 
-    // Would add the movie div to the list item in the unordered list
-    $('#' + newMovie.id).append(currentMovieHTML);
+    $('#search-results').append(`<li>${currentMovieHTML}</li><button id=result-select>Select</button>`);
   }
 };
 
@@ -66,7 +65,7 @@ const findMovie = function () {
 
 const getMovieDetails = function (id) {
   const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + id;
-
+  $('#findMovie').removeClass('invisible');
   $.ajax({
     url: detailQueryUrl,
     method: 'GET'
