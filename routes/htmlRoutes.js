@@ -87,6 +87,21 @@ module.exports = (db) => {
     }
   });
 
+  // Load my-munchies page
+  router.get('/my-munchies', function (req, res) {
+    if (req.isAuthenticated()) {
+      db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
+        res.render('my-munchies', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          msg: 'Welcome!',
+          examples: dbExamples
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
   // Logout
   router.get('/logout', (req, res, next) => {
     req.logout();
