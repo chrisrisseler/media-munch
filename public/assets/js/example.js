@@ -11,6 +11,7 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
+const $selectMovieClicker = $('#result-select-0');
 
 let example = {};
 let movieTitle;
@@ -22,6 +23,7 @@ let movieGenre;
 
 const displayOptions = function (response) {
   $('#search-results').empty(); // plug in the html of the unordered list of movies
+  $('#findMovie').removeClass('invisible');
   console.log(response.Search.length);
   for (let i = 0; i < response.Search.length; i++) {
     const currentMovie = response.Search[i];
@@ -29,7 +31,9 @@ const displayOptions = function (response) {
     const currentTitle = currentMovie.Title;
     const currentYear = currentMovie.Year;
     const currentPoster = currentMovie.Poster;
+    const currentID = currentMovie.imdbID;
 
+    //this might be useless due to how we implement li in the append, consider removing when working
     const newMovie = document.createElement('li');
     newMovie.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
     newMovie.id = 'movie-number' + i; // Would be the ID of each movie on the list displayed
@@ -44,9 +48,15 @@ const displayOptions = function (response) {
     </div>
     `;
 
-    $('#search-results').append(`<li>${currentMovieHTML}</li><button id=result-select class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"">Select</button>`);
+    $('#search-results').append(`<li>${currentMovieHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
   }
 };
+
+//Unsure if there will be a different call for getMovieDetails so as of right now this is its own function for the user case of selecting the movie off of the list of movies given by OMDB.
+const displaySelected = function () {
+  $('#search-results').empty();
+  getMovieDetails(this.value);
+}
 
 const findMovie = function () {
   // temp search box id
@@ -58,14 +68,13 @@ const findMovie = function () {
     method: 'GET'
   }).then((response) => {
     displayOptions(response);
-    getMovieDetails(response.Search[0].imdbID);
+    //getMovieDetails(response.Search[0].imdbID);
     console.log(response);
   });
 };
 
-const getMovieDetails = function (id) {
+const getMovieDetails = function (id) {  
   const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + id;
-  $('#findMovie').removeClass('invisible');
   $.ajax({
     url: detailQueryUrl,
     method: 'GET'
@@ -189,3 +198,6 @@ const handleDeleteBtnClick = function () {
 $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
 $searchBtn.on('click', findMovie);
+
+$(document).on('click', '.selectedMovieButton', displaySelected)
+//$selectMovieClicker.on('click', displaySelected);
