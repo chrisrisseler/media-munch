@@ -11,8 +11,10 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
+
 const mediatype = $('#media-type').val();
 // const mediatype = 'game';
+
 
 let example = {};
 let movieTitle;
