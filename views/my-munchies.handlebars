@@ -1,13 +1,13 @@
 <body>
 <section class="row">
     <section class="col-md-6">
-     <h4>Examples belong to this user:</h4>
-        <ol></ol> id="example-list" class="list-group">
+     <h4>Your munchies:</h4>
+        <ol id="example-list" class="list-group">
           {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">Title: {{this.title}} Year: {{this.year}} Rating: {{this.rating}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
+            <li data-id="{{this.id}}" class="list-group-item">
+            <a href="example/{{this.id}}"> <strong>{{this.title}}</strong> {{this.year}} {{this.rating}}</a>
+            <button id="delete-munchie" class="btn btn-danger delete">ｘ</button>
+            </li>
           {{/each}}
         </ol>
       </section>
