@@ -2,10 +2,10 @@
 
 <section id="home">
   <section class="row">
-    <section class="col-8 offset-2">
+    <section class="col-8">
 
       <!-- Search -->
-      <section class="relative mr-6 my-2 float-right">
+      <section class="relative mr-6 my-2">
         <input type="search" class="bg-purple-white shadow rounded border-0 p-3" id="search-box"
           placeholder="Search by name...">
         <button class="pin-r pin-t mt-3 mr-4 text-purple-lighter" id="searchBtn">
@@ -20,44 +20,43 @@
         </button>
       </section>
       <h2>{{msg}}</h2>
-
-      <form class="clearfix mt-8 max-w-md" action="POST" id="add-form">
-        <section class="form-group">
-          <label for="synopsis">Synopsis</label>
-          <input
-            class="mt-0 block w-full py-10 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
-            id="synopsis" aria-describedby="synopsis" placeholder="Enter Synopsis"></input>
+      <div class="flex flex-wrap justify-evenly p-5 mt-8">
+        <form class="clearfix" action="POST" id="add-form">
+          <section class="form-group">
+            <div>
+              <label for="synopsis">Synopsis</label>
+              <input
+                class="mt-0 block w-full py-10 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
+                id="synopsis" aria-describedby="synopsis" placeholder="Enter Synopsis"></input>
+            </div>
+            <div>
+              <label for="my-rating">Rating</label>
+              <input class="form-control px-3 py-3 border-b-2" id="my-rating" aria-describedby="my-rating"
+                placeholder="Enter Rating"></input>
+            </div>
+            <div>
+              <label for="my-review">Review</label>
+              <input
+                class="mt-0 block w-full py-10 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
+                aria-describedby="my-review" placeholder="Enter Description"></input>
+            </div>
+          </section>
+          <button id="submit"
+            class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm m-10 px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
+        </form>
+        <!-- Results -->
+        <section class="invisible bg-white shadow sm:rounded-lg float-right" id="findMovie">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Results
+          </h3>
+          <ul id="search-results" class="overflow-y-scroll h-96"></ul>
         </section>
-        <section class="form-group">
-          <label for="my-rating">Rating</label>
-          <input class="form-control px-3 py-3 border-b-2" id="my-rating" aria-describedby="my-rating"
-            placeholder="Enter Rating"></input>
-        </section>
-        <section class="form-group">
-          <label for="my-review">Review</label>
-          <input
-            class="mt-0 block w-full py-10 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
-            aria-describedby="my-review" placeholder="Enter Description" id="my-review"></input>
-        </section>
-        <button id="submit"
-          class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm m-10 px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
-      </form>
+      </div>
     </section>
   </section>
 </section>
 
 
-<!-- Results -->
-<section class="invisible bg-white shadow overflow-hidden sm:rounded-lg" id="findMovie">
-  <section class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg leading-6 font-medium text-gray-900">
-      Results
-    </h3>
-  </section>
-  <section class="border-t border-gray-200">
-    <ul id="search-results"></ul>
-  </section>
-</section>
 {{!-- {{/each}} --}}
 
 <script src="/assets/js/example.js"></script>
