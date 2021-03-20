@@ -53,12 +53,6 @@ const displayOptions = function (response) {
 };
 
 // Unsure if there will be a different call for getMovieDetails so as of right now this is its own function for the user case of selecting the movie off of the list of movies given by OMDB.
-const displaySelected = function () {
-  $('#search-results').empty();
-  $('#findMovie').addClass('hidden');
-  $('#inputDiv').removeClass('hidden');
-  getMovieDetails(this.value);
-};
 
 const findMovie = function () {
   // temp search box id
@@ -89,9 +83,20 @@ const getMovieDetails = function (id) {
     movieCast = response.Actors;
     movieGenre = response.Genre;
 
+    displaySelected();
     console.log(moviePoster);
     console.log(response);
   });
+};
+
+const displaySelected = function () {
+  // $('#search-results').empty();
+  $('#findMovie').addClass('hidden');
+  $('#inputDiv').removeClass('hidden');
+  // console.log(movieTitle);
+  // console.log(moviePoster);
+  $('#selectedMovie').html(movieTitle);
+  $('#selectedPoster').attr('src', moviePoster);
 };
 
 // The API object contains methods for each kind of request we'll make
@@ -204,4 +209,6 @@ $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
 $searchBtn.on('click', findMovie);
 
-$(document).on('click', '.selectedMovieButton', displaySelected);
+$(document).on('click', '.selectedMovieButton', function (event) {
+  getMovieDetails(event.target.value);
+});
