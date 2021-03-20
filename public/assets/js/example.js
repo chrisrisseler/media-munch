@@ -56,6 +56,8 @@ const displayOptions = function (response) {
 // Unsure if there will be a different call for getMovieDetails so as of right now this is its own function for the user case of selecting the movie off of the list of movies given by OMDB.
 const displaySelected = function () {
   $('#search-results').empty();
+  $('#findMovie').addClass('hidden');
+  $('#inputDiv').removeClass('hidden');
   getMovieDetails(this.value);
 };
 
