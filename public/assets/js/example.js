@@ -88,6 +88,7 @@ const getMovieDetails = function (id) {
     movieCast = response.Actors;
     movieGenre = response.Genre;
 
+    console.log(moviePoster);
     console.log(response);
   });
 };
