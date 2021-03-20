@@ -11,7 +11,8 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-const mediatype = $('#media-type').val();
+// const mediatype = $('#media-type').val();
+const mediatype = 'game';
 
 let example = {};
 let movieTitle;
@@ -221,7 +222,7 @@ if (mediatype === 'movie') {
 } else if (mediatype === 'game') {
   const displayOptions = function (response) {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
-    $('#findGame').removeClass('invisible');
+    $('#findMedia').removeClass('invisible');
     $('#search-box').val('');
     console.log(response.results.length);
     for (let i = 0; i < response.results.length; i++) {
@@ -235,7 +236,7 @@ if (mediatype === 'movie') {
       // this might be useless due to how we implement li in the append, consider removing when working
       const newGame = document.createElement('li');
       newGame.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
-      newGame.id = 'Game-number' + i; // Would be the ID of each Game on the list displayed
+      newGame.id = 'game-number' + i; // Would be the ID of each Game on the list displayed
 
       // Would need classes and or ids to set up css in this.
       const currentGameHTML =
@@ -289,7 +290,7 @@ if (mediatype === 'movie') {
 
   const displaySelected = function () {
     // $('#search-results').empty();
-    $('#findGame').addClass('hidden');
+    $('#findMedia').addClass('hidden');
     $('#inputDiv').removeClass('hidden');
     // console.log(GameTitle);
     // console.log(GamePoster);
