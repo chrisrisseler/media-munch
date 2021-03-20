@@ -411,3 +411,4 @@ if (mediatype === 'movie') {
 }
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
+// not sure if it adds stuff to db
