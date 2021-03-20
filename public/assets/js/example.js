@@ -11,7 +11,7 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-const $selectMovieClicker = $('#result-select-0');
+// const $selectMovieClicker = $('#result-select-0');
 
 let example = {};
 let movieTitle;
@@ -34,7 +34,7 @@ const displayOptions = function (response) {
     const currentPoster = currentMovie.Poster;
     const currentID = currentMovie.imdbID;
 
-    //this might be useless due to how we implement li in the append, consider removing when working
+    // this might be useless due to how we implement li in the append, consider removing when working
     const newMovie = document.createElement('li');
     newMovie.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
     newMovie.id = 'movie-number' + i; // Would be the ID of each movie on the list displayed
@@ -53,11 +53,11 @@ const displayOptions = function (response) {
   }
 };
 
-//Unsure if there will be a different call for getMovieDetails so as of right now this is its own function for the user case of selecting the movie off of the list of movies given by OMDB.
+// Unsure if there will be a different call for getMovieDetails so as of right now this is its own function for the user case of selecting the movie off of the list of movies given by OMDB.
 const displaySelected = function () {
   $('#search-results').empty();
   getMovieDetails(this.value);
-}
+};
 
 const findMovie = function () {
   // temp search box id
@@ -69,7 +69,7 @@ const findMovie = function () {
     method: 'GET'
   }).then((response) => {
     displayOptions(response);
-    //getMovieDetails(response.Search[0].imdbID);
+    // getMovieDetails(response.Search[0].imdbID);
     console.log(response);
   });
 };
@@ -88,6 +88,7 @@ const getMovieDetails = function (id) {
     movieCast = response.Actors;
     movieGenre = response.Genre;
 
+    console.log(moviePoster);
     console.log(response);
   });
 };
@@ -202,5 +203,5 @@ $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
 $searchBtn.on('click', findMovie);
 
-$(document).on('click', '.selectedMovieButton', displaySelected)
+$(document).on('click', '.selectedMovieButton', displaySelected);
 // $selectMovieClicker.on('click', displaySelected);

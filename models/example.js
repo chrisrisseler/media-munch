@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   const Example = sequelize.define('Example', {
-    image: DataTypes.STRING,
+    image: DataTypes.TEXT,
     title: DataTypes.TEXT,
     year: DataTypes.INTEGER,
     author: DataTypes.STRING,
