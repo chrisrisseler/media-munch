@@ -20,6 +20,7 @@ let movieWriter;
 let movieDirector;
 let movieCast;
 let movieGenre;
+let moviePoster;
 
 const displayOptions = function (response) {
   $('#search-results').empty(); // plug in the html of the unordered list of movies
@@ -73,12 +74,13 @@ const findMovie = function () {
   });
 };
 
-const getMovieDetails = function (id) {  
+const getMovieDetails = function (id) {
   const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + id;
   $.ajax({
     url: detailQueryUrl,
     method: 'GET'
   }).then((response) => {
+    moviePoster = response.Poster;
     movieTitle = response.Title;
     movieYear = response.Year;
     movieWriter = response.Writer;
@@ -151,6 +153,7 @@ const handleFormSubmit = function (event) {
   event.preventDefault();
 
   example = {
+    image: moviePoster,
     title: movieTitle,
     year: movieYear,
     author: movieWriter,
@@ -200,4 +203,4 @@ $exampleList.on('click', '.delete', handleDeleteBtnClick);
 $searchBtn.on('click', findMovie);
 
 $(document).on('click', '.selectedMovieButton', displaySelected)
-//$selectMovieClicker.on('click', displaySelected);
+// $selectMovieClicker.on('click', displaySelected);
