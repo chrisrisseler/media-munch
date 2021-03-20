@@ -11,7 +11,8 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-const mediatype = $('#media-type').val();
+const mediatype = 'movie';
+// $('#media-type').val();
 
 let example = {};
 let movieTitle;
