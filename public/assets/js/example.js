@@ -11,11 +11,6 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-<<<<<<< Updated upstream
-=======
-
-// const $selectMovieClicker = $('#result-select-0');
->>>>>>> Stashed changes
 
 let example = {};
 let movieTitle;
@@ -214,12 +209,6 @@ $submitBtn.on('click', handleFormSubmit);
 $exampleList.on('click', '.delete', handleDeleteBtnClick);
 $searchBtn.on('click', findMovie);
 
-<<<<<<< Updated upstream
-$(document).on('click', '.selectedMovieButton', displaySelected);
-=======
 $(document).on('click', '.selectedMovieButton', function (event) {
-  // console.log(event);
   getMovieDetails(event.target.value);
 });
-// $selectMovieClicker.on('click', displaySelected);
->>>>>>> Stashed changes
