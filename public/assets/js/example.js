@@ -11,7 +11,6 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-// const $selectMovieClicker = $('#result-select-0');
 
 let example = {};
 let movieTitle;
@@ -206,4 +205,3 @@ $exampleList.on('click', '.delete', handleDeleteBtnClick);
 $searchBtn.on('click', findMovie);
 
 $(document).on('click', '.selectedMovieButton', displaySelected);
-// $selectMovieClicker.on('click', displaySelected);
