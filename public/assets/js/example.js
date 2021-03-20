@@ -24,6 +24,7 @@ let moviePoster;
 
 let gameTitle;
 let gameYear;
+let gameDeveloper;
 let gameGenre;
 let gamePoster;
 
@@ -222,14 +223,14 @@ if (mediatype === 'movie') {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
     $('#findGame').removeClass('invisible');
     $('#search-box').val('');
-    console.log(response.Search.length);
-    for (let i = 0; i < response.Search.length; i++) {
-      const currentGame = response.Search[i];
-      console.log(response);
-      const currentTitle = currentGame.Title;
-      const currentYear = currentGame.Year;
-      const currentPoster = currentGame.Poster;
-      const currentID = currentGame.imdbID;
+    console.log(response.results.length);
+    for (let i = 0; i < response.results.length; i++) {
+      const currentGame = response.results[i];
+      // console.log(response);
+      const currentTitle = currentGame.name;
+      const currentYear = currentGame.released;
+      const currentPoster = currentGame.background_image;
+      const currentID = currentGame.id;
 
       // this might be useless due to how we implement li in the append, consider removing when working
       const newGame = document.createElement('li');
@@ -263,15 +264,25 @@ if (mediatype === 'movie') {
     }).then((response) => {
       displayOptions(response);
       // getGameDetails(response.Search[0].imdbID);
-      gamePoster = response.results.background_image;
-      gameTitle = response.results.name;
+      console.log(response);
+    });
+  };
+
+  const getGameDetails = function (id) {
+    const detailQueryUrl = 'https://api.rawg.io/api/games/' + id + '?key=7dd64f0797d74fb0981b46bc46e59163';
+    $.ajax({
+      url: detailQueryUrl,
+      method: 'GET'
+    }).then((response) => {
+      gamePoster = response.background_image;
+      gameTitle = response.name;
       gameYear = response.released;
-      // create a loop for genres
-      gameGenre = response.genres;
+      // add loops for these two
+      gameGenre = response.genre;
+      gameDeveloper = response.developers;
 
       displaySelected();
       console.log(gamePoster);
-
       console.log(response);
     });
   };
@@ -350,6 +361,7 @@ if (mediatype === 'movie') {
       image: gamePoster,
       title: gameTitle,
       year: gameYear,
+      author: gameDeveloper,
       genre: gameGenre,
       synopsis: $examplePlot.val().trim(),
       rating: $exampleRating.val().trim(),
@@ -390,8 +402,9 @@ if (mediatype === 'movie') {
   $exampleList.on('click', '.delete', handleDeleteBtnClick);
   $searchBtn.on('click', findGame);
 
-  $(document).on('click', '.selectedMovieButton', findGame()
-  );
+  $(document).on('click', '.selectedMovieButton', function (event) {
+    getGameDetails(event.target.value);
+  });
 } else {
   alert('media type needs to be chosen');
 }
