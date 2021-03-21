@@ -1,20 +1,34 @@
-<body>
-<section class="row">
-    <section class="col-md-6">
-     <h4>Your munchies:</h4>
-        <ol id="example-list" class="list-group">
-          {{#each examples}}
-            <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}"> <strong>{{this.title}}</strong> {{this.year}} {{this.rating}}</a>
-            <button id="delete-munchie" class="btn btn-danger delete">ｘ</button>
-            </li>
-          {{/each}}
-        </ol>
-      </section>
-    </section>
-    <section class="col-md-6" id="munchies-detail">
-        <p>other stuff goes here</p>
-    </section>
-</section>
+
+<div class="grid md:grid-cols-4 rows-1 gap-2" id="munchies-grid">
+  <div class="col-span-1 flex items-stretch gutter"></div>
+  <div class="col-span-2 flex items-stretch md:items-center">
+    <table class="table-auto" id="munchies-table">
+      <thead>
+        <tr>
+          <th class="border border-grey ...">Title</th>
+          <th class="border border-grey ...">Year</th>
+          <th class="border border-grey ...">Genre</th>
+          <th class="border border-grey ...">Media type</th>
+          <th class="border border-grey ...">Rating</th>
+          {{!-- Empty column to hold delete button --}}
+          <th id="blank-header"></th>
+        </tr>
+      </thead>
+      <tbody class="munchies">
+        {{#each examples}}
+        <tr>
+          <td class="transition duration-500 ease-in-out bg-white-100 hover:bg-purple-100 transform hover:-translate-y-1 hover:scale-110 ... border border-grey ..."><a href="example/{{this.id}}">{{this.title}}</a></td>
+          <td class="border border-grey ..."  id="munchie-year">{{this.year}}</td>
+          <td class="border border-grey ...">{{this.genre}}</td>
+          <td class="border border-grey ...">{{this.mediaType}}</td>
+          <td class="border border-grey ..." id="munchie-rating">{{this.rating}}</td>
+          <td><button id="delete-munchie" class="btn btn-danger delete"><i class="fa fa-trash fa-lg transition duration-200 ease-in-out bg-white-100 hover:color-red transform" aria-hidden="true"></i></button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-span-1 flex items-stretch gutter"></div>
+</div>
+
 <script src="/assets/js/example.js"></script>
-</body>
