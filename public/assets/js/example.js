@@ -36,13 +36,13 @@ const showDropDown = function () {
   $('#media-type').toggleClass('hidden');
 };
 
-//$searchBtn.on('click', alert('media type needs to be chosen'));
+// $searchBtn.on('click', alert('media type needs to be chosen'));
 $itemsMenu.on('click', showDropDown);
 
-$(document).on('click', '.selectMediaItem', function(event) {
+$(document).on('click', '.selectMediaItem', function (event) {
   typeOfMedia = event.target.innerHTML;
-  $('#media-type').toggleClass('hidden'); //toggles the choices in the box
-  document.getElementById('options-menu').innerHTML = typeOfMedia; //changes the type of media box to the currently selected type of media
+  $('#media-type').toggleClass('hidden'); // toggles the choices in the box
+  document.getElementById('options-menu').innerHTML = typeOfMedia; // changes the type of media box to the currently selected type of media
 
   console.log(typeOfMedia);
 });
