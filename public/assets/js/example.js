@@ -11,7 +11,7 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-const mediatype = $('#media-type').val();
+// let mediatype = $('#media-type').val();
 // const mediatype = 'game';
 const $itemsMenu = $('#options-menu');
 let typeOfMedia;
@@ -45,8 +45,9 @@ $(document).on('click', '.selectMediaItem', function (event) {
 
   console.log(typeOfMedia);
 });
+// console.log(typeOfMedia);
 
-if (mediatype === 'movie') {
+if (typeOfMedia === 'Movie') {
   const displayOptions = function (response) {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
     $('#findMedia').removeClass('invisible');
@@ -236,7 +237,7 @@ if (mediatype === 'movie') {
   $(document).on('click', '.selectedMovieButton', function (event) {
     getMovieDetails(event.target.value);
   });
-} else if (mediatype === 'game') {
+} else if (typeOfMedia === 'Game') {
   const displayOptions = function (response) {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
     $('#findMedia').removeClass('invisible');
@@ -423,9 +424,7 @@ if (mediatype === 'movie') {
   $(document).on('click', '.selectedMovieButton', function (event) {
     getGameDetails(event.target.value);
   });
-} else {
-  alert('media type needs to be chosen');
-}
+};
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
 // not sure if it adds stuff to db
