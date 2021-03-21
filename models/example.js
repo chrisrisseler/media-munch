@@ -1,5 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   const Example = sequelize.define('Example', {
+    mediaType: DataTypes.STRING,
     image: DataTypes.TEXT,
     title: DataTypes.TEXT,
     year: DataTypes.INTEGER,
