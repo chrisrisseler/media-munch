@@ -12,7 +12,10 @@ const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
 const mediatype = 'movie';
+const $itemsMenu = $('#options-menu');
 // $('#media-type').val();
+
+let typeOfMedia;
 
 let example = {};
 let movieTitle;
@@ -28,6 +31,21 @@ let gameYear;
 let gameDeveloper;
 let gameGenre;
 let gamePoster;
+
+const showDropDown = function () {
+  $('#media-type').toggleClass('hidden');
+};
+
+// $searchBtn.on('click', alert('media type needs to be chosen'));
+$itemsMenu.on('click', showDropDown);
+
+$(document).on('click', '.selectMediaItem', function (event) {
+  typeOfMedia = event.target.innerHTML;
+  $('#media-type').toggleClass('hidden'); // toggles the choices in the box
+  document.getElementById('options-menu').innerHTML = typeOfMedia; // changes the type of media box to the currently selected type of media
+
+  console.log(typeOfMedia);
+});
 
 if (mediatype === 'movie') {
   const displayOptions = function (response) {
