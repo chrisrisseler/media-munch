@@ -11,8 +11,9 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-// let mediatype = $('#media-type').val();
+// const mediatype = $('#media-type').val();
 // const mediatype = 'game';
+let mediatype;
 const $itemsMenu = $('#options-menu');
 let typeOfMedia;
 
@@ -42,12 +43,12 @@ $(document).on('click', '.selectMediaItem', function (event) {
   typeOfMedia = event.target.innerHTML;
   $('#media-type').toggleClass('hidden'); // toggles the choices in the box
   document.getElementById('options-menu').innerHTML = typeOfMedia; // changes the type of media box to the currently selected type of media
-
+  mediatype = typeOfMedia;
   console.log(typeOfMedia);
 });
-// console.log(typeOfMedia);
+console.log(mediatype);
 
-if (typeOfMedia === 'Movie') {
+if (mediatype === 'Movie') {
   const displayOptions = function (response) {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
     $('#findMedia').removeClass('invisible');
@@ -188,6 +189,7 @@ if (typeOfMedia === 'Movie') {
     event.preventDefault();
 
     example = {
+      mediaType: 'Movie',
       image: moviePoster,
       title: movieTitle,
       year: movieYear,
@@ -237,7 +239,7 @@ if (typeOfMedia === 'Movie') {
   $(document).on('click', '.selectedMovieButton', function (event) {
     getMovieDetails(event.target.value);
   });
-} else if (typeOfMedia === 'Game') {
+} else if (mediatype === 'Game') {
   const displayOptions = function (response) {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
     $('#findMedia').removeClass('invisible');
@@ -377,6 +379,7 @@ if (typeOfMedia === 'Movie') {
     event.preventDefault();
 
     example = {
+      mediaType: 'Video Game',
       image: gamePoster,
       title: gameTitle,
       year: gameYear,
