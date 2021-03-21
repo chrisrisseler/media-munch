@@ -11,10 +11,9 @@ const $exampleReview = $('#my-review');
 const $submitBtn = $('#submit');
 const $exampleList = $('#example-list');
 const $searchBtn = $('#searchBtn');
-const mediatype = 'movie';
+// let mediatype = $('#media-type').val();
+// const mediatype = 'game';
 const $itemsMenu = $('#options-menu');
-// $('#media-type').val();
-
 let typeOfMedia;
 
 let example = {};
@@ -46,8 +45,9 @@ $(document).on('click', '.selectMediaItem', function (event) {
 
   console.log(typeOfMedia);
 });
+// console.log(typeOfMedia);
 
-if (mediatype === 'movie') {
+if (typeOfMedia === 'Movie') {
   const displayOptions = function (response) {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
     $('#findMedia').removeClass('invisible');
@@ -237,10 +237,10 @@ if (mediatype === 'movie') {
   $(document).on('click', '.selectedMovieButton', function (event) {
     getMovieDetails(event.target.value);
   });
-} else if (mediatype === 'game') {
+} else if (typeOfMedia === 'Game') {
   const displayOptions = function (response) {
     $('#search-results').empty(); // plug in the html of the unordered list of movies
-    $('#findGame').removeClass('invisible');
+    $('#findMedia').removeClass('invisible');
     $('#search-box').val('');
     console.log(response.results.length);
     for (let i = 0; i < response.results.length; i++) {
@@ -254,7 +254,7 @@ if (mediatype === 'movie') {
       // this might be useless due to how we implement li in the append, consider removing when working
       const newGame = document.createElement('li');
       newGame.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
-      newGame.id = 'Game-number' + i; // Would be the ID of each Game on the list displayed
+      newGame.id = 'game-number' + i; // Would be the ID of each Game on the list displayed
 
       // Would need classes and or ids to set up css in this.
       const currentGameHTML =
@@ -308,7 +308,7 @@ if (mediatype === 'movie') {
 
   const displaySelected = function () {
     // $('#search-results').empty();
-    $('#findGame').addClass('hidden');
+    $('#findMedia').addClass('hidden');
     $('#inputDiv').removeClass('hidden');
     // console.log(GameTitle);
     // console.log(GamePoster);
@@ -424,8 +424,7 @@ if (mediatype === 'movie') {
   $(document).on('click', '.selectedMovieButton', function (event) {
     getGameDetails(event.target.value);
   });
-} else {
-  alert('media type needs to be chosen');
-}
+};
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
+// not sure if it adds stuff to db
