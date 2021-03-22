@@ -8,6 +8,7 @@ module.exports = (db) => {
   }).then(() => {
     db.Example.create({
       UserId: 1,
+      mediaType: 'Movie',
       image: 'Sample image',
       title: 'The Twentiety Century',
       year: '2019',
