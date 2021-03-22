@@ -86,7 +86,7 @@ const findMedia = function () {
       url: searchQueryUrl,
       method: 'GET'
     }).then((response) => {
-      displayOptionsComic(response)
+      displayOptionsComic(response);
       console.log(response);
     });
   };
