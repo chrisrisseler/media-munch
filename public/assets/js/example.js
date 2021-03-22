@@ -170,6 +170,7 @@ const getMediaDetails = function (id) {
       method: 'GET'
     }).then((response) => {
       let genreBuilder = '';
+      let devBuilder = '';
       gamePoster = response.background_image;
       gameTitle = response.name;
       gameYear = response.released.substring(0, 4);
@@ -181,8 +182,15 @@ const getMediaDetails = function (id) {
           genreBuilder += response.genres[i].name + ', ';
         }
       }
+      for (let i = 0; i < response.developers.length; i++) {
+        if (i === response.developers.length - 1) {
+          devBuilder += response.developers[i].name;
+        } else {
+          devBuilder += response.developers[i].name + ', ';
+        }
+      }
       gameGenre = genreBuilder;
-      gameDeveloper = response.developers[0].name;
+      gameDeveloper = devBuilder;
 
       displaySelectedGame();
       console.log(gamePoster);
