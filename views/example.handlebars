@@ -1,14 +1,13 @@
 {{> nav/nav-block}}
 
 <section id="home">
-  <section class="row">
+  <section class="row min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
     <section class="col-8">
 
       <!-- Search -->
-      <section class="relative mr-6 my-2">
-        <input type="search" class="bg-purple-white shadow rounded border-0 p-3" id="search-box"
-          placeholder="Search by name...">
-        <button class="pin-r pin-t mt-3 mr-4 text-purple-lighter" id="searchBtn">
+      <section class="mr-6 my-2 flex justify-center">
+        <input type="search" class="bg-purple-white shadow rounded border-0 p-3 " id="search-box" placeholder="Search by name...">
+        <button class="relative pin-r pin-t mt-3 ml-1 text-purple-lighter" id="searchBtn">
           <svg version="1.1" class="h-4 text-dark" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 52.966 52.966"
             style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
@@ -21,7 +20,7 @@
       </section>
 
       <!-- Select Dropdown Menu -->
-      <section class="relative inline-block text-left">
+      <section class="relative inline-block text-left flex justify-center">
         <div>
           <button type="button"
             class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
@@ -73,9 +72,8 @@
             <section class="form-group">
               <div>
                 <label for="synopsis">Synopsis</label>
-                <input
-                  class="mt-0 block w-full py-10 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
-                  id="synopsis" aria-describedby="synopsis" placeholder="Enter Synopsis"></input>
+                <textarea
+                  class="mt-0 block w-full border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" rows=3 id="synopsis" aria-describedby="synopsis" placeholder="Enter Synopsis"></textarea>
               </div>
               <div>
                 <label for="my-rating">Rating</label>
@@ -84,9 +82,8 @@
               </div>
               <div>
                 <label for="my-review">Review</label>
-                <input
-                  class="mt-0 block w-full py-10 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
-                  aria-describedby="my-review" placeholder="Enter Description" id="my-review"></input>
+                <textarea
+                  class="mt-0 block w-full border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" rows=3 aria-describedby="my-review" placeholder="Enter Description" id="my-review"></textarea>
               </div>
             </section>
             <button id="submit"
@@ -95,11 +92,11 @@
         </div>
 
         <!-- Results -->
-        <section class="invisible bg-white shadow sm:rounded-lg float-right" id="findMedia">
-          <h3 class="text-lg leading-6 font-medium text-gray-900">
+        <section class="invisible bg-white shadow sm:rounded-lg float-right p-5" id="findMedia">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 flex justify-center">
             Results
           </h3>
-          <ul id="search-results" class="overflow-y-scroll h-96"></ul>
+          <ul id="search-results" class="overflow-y-scroll h-96 p-4"></ul>
         </section>
       </div>
     </section>
