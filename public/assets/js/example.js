@@ -76,7 +76,20 @@ const findMedia = function () {
       // getGameDetails(response.Search[0].imdbID);
       console.log(response);
     });
-  }
+  } else if (typeOfMedia === 'Comic') {
+    const searchTerm = $('#search-box').val();
+    const responseFields = 'name,id,image,description,deck,cover_date,volume,issue_number,publisher';
+    const searchQueryUrl = 'https://cors-anywhere.herokuapp.com/http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816' +
+    '&format=json&field_list=' + responseFields + '$resources=' + 'volume' + '&query=' + searchTerm;
+
+    $.ajax({
+      url: searchQueryUrl,
+      method: 'GET'
+    }).then((response) => {
+      displayOptionsComic(response);
+      console.log(response);
+    });
+  };
 };
 
 const displayOptionsMovie = function (response) {
@@ -140,6 +153,38 @@ const displayOptionsGame = function (response) {
   `;
 
     $('#search-results').append(`<li>${currentGameHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
+  }
+};
+
+const displayOptionsComic = function (response) {
+  $('#search-results').empty(); // plug in the html of the unordered list of movies
+  $('#findMedia').removeClass('invisible');
+  $('#search-box').val('');
+  console.log(response.results.length);
+  for (let i = 0; i < response.results.length; i++) {
+    const currentComic = response.results[i];
+    // console.log(response);
+    const currentTitle = currentComic.name;
+    const currentYear = currentComic.released;
+    const currentPoster = currentComic.image.medium_url;
+    const currentID = currentComic.id;
+
+    // this might be useless due to how we implement li in the append, consider removing when working
+    const newComic = document.createElement('li');
+    newComic.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
+    newComic.id = 'comic-number' + i; // Would be the ID of each Game on the list displayed
+
+    // Would need classes and or ids to set up css in this.
+    const currentComicHTML =
+      `
+  <div>
+    <h4>${currentTitle}</h4>
+    <p>${currentYear}</p>
+    <img src="${currentPoster}">
+  </div>
+  `;
+
+    $('#search-results').append(`<li>${currentComicHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
   }
 };
 
