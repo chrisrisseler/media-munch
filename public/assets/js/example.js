@@ -48,43 +48,11 @@ $(document).on('click', '.selectMediaItem', function (event) {
 });
 console.log(mediatype);
 
-if (mediatype === 'Movie') {
-  const displayOptions = function (response) {
-    $('#search-results').empty(); // plug in the html of the unordered list of movies
-    $('#findMedia').removeClass('invisible');
-    $('#search-box').val('');
-    console.log(response.Search.length);
-    for (let i = 0; i < response.Search.length; i++) {
-      const currentMovie = response.Search[i];
-      console.log(response);
-      const currentTitle = currentMovie.Title;
-      const currentYear = currentMovie.Year;
-      const currentPoster = currentMovie.Poster;
-      const currentID = currentMovie.imdbID;
+const findMedia = function () {
+  // temp search box id
+  console.log(typeOfMedia);
 
-      // this might be useless due to how we implement li in the append, consider removing when working
-      const newMovie = document.createElement('li');
-      newMovie.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
-      newMovie.id = 'movie-number' + i; // Would be the ID of each movie on the list displayed
-
-      // Would need classes and or ids to set up css in this.
-      const currentMovieHTML =
-        `
-    <div>
-      <h4>${currentTitle}</h4>
-      <p>${currentYear}</p>
-      <img src="${currentPoster}">
-    </div>
-    `;
-
-      $('#search-results').append(`<li>${currentMovieHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
-    }
-  };
-
-  // Unsure if there will be a different call for getMovieDetails so as of right now this is its own function for the user case of selecting the movie off of the list of movies given by OMDB.
-
-  const findMovie = function () {
-    // temp search box id
+  if (typeOfMedia === 'Movie') {
     const searchTerm = $('#search-box').val();
     const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
 
@@ -92,18 +60,97 @@ if (mediatype === 'Movie') {
       url: searchQueryUrl,
       method: 'GET'
     }).then((response) => {
-      displayOptions(response);
+      displayOptionsMovie(response);
       // getMovieDetails(response.Search[0].imdbID);
       console.log(response);
     });
-  };
+  } else if (typeOfMedia === 'Game') {
+    const searchTerm = $('#search-box').val();
+    const searchQueryUrl = 'https://api.rawg.io/api/games?key=7dd64f0797d74fb0981b46bc46e59163&search=' + searchTerm;
 
-  const getMovieDetails = function (id) {
+    $.ajax({
+      url: searchQueryUrl,
+      method: 'GET'
+    }).then((response) => {
+      displayOptionsGame(response);
+      // getGameDetails(response.Search[0].imdbID);
+      console.log(response);
+    });
+  }
+};
+
+const displayOptionsMovie = function (response) {
+  $('#search-results').empty(); // plug in the html of the unordered list of movies
+  $('#findMedia').removeClass('invisible');
+  $('#search-box').val('');
+  console.log(response.Search.length);
+  for (let i = 0; i < response.Search.length; i++) {
+    const currentMovie = response.Search[i];
+    console.log(response);
+    const currentTitle = currentMovie.Title;
+    const currentYear = currentMovie.Year;
+    const currentPoster = currentMovie.Poster;
+    const currentID = currentMovie.imdbID;
+
+    // this might be useless due to how we implement li in the append, consider removing when working
+    const newMovie = document.createElement('li');
+    newMovie.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
+    newMovie.id = 'movie-number' + i; // Would be the ID of each movie on the list displayed
+
+    // Would need classes and or ids to set up css in this.
+    const currentMovieHTML =
+      `
+  <div>
+    <h4>${currentTitle}</h4>
+    <p>${currentYear}</p>
+    <img src="${currentPoster}">
+  </div>
+  `;
+
+    $('#search-results').append(`<li>${currentMovieHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
+  }
+};
+
+const displayOptionsGame = function (response) {
+  $('#search-results').empty(); // plug in the html of the unordered list of movies
+  $('#findMedia').removeClass('invisible');
+  $('#search-box').val('');
+  console.log(response.results.length);
+  for (let i = 0; i < response.results.length; i++) {
+    const currentGame = response.results[i];
+    // console.log(response);
+    const currentTitle = currentGame.name;
+    const currentYear = currentGame.released;
+    const currentPoster = currentGame.background_image;
+    const currentID = currentGame.id;
+
+    // this might be useless due to how we implement li in the append, consider removing when working
+    const newGame = document.createElement('li');
+    newGame.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
+    newGame.id = 'game-number' + i; // Would be the ID of each Game on the list displayed
+
+    // Would need classes and or ids to set up css in this.
+    const currentGameHTML =
+      `
+  <div>
+    <h4>${currentTitle}</h4>
+    <p>${currentYear}</p>
+    <img src="${currentPoster}">
+  </div>
+  `;
+
+    $('#search-results').append(`<li>${currentGameHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
+  }
+};
+
+const getMediaDetails = function (id) {
+  if (typeOfMedia === 'Movie') {
     const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + id;
     $.ajax({
       url: detailQueryUrl,
       method: 'GET'
     }).then((response) => {
+      mediatype = 'Movie';
       moviePoster = response.Poster;
       movieTitle = response.Title;
       movieYear = response.Year;
@@ -112,82 +159,121 @@ if (mediatype === 'Movie') {
       movieCast = response.Actors;
       movieGenre = response.Genre;
 
-      displaySelected();
+      displaySelectedMovie();
       console.log(moviePoster);
       console.log(response);
     });
-  };
+  } else if (typeOfMedia === 'Game') {
+    const detailQueryUrl = 'https://api.rawg.io/api/games/' + id + '?key=7dd64f0797d74fb0981b46bc46e59163';
+    $.ajax({
+      url: detailQueryUrl,
+      method: 'GET'
+    }).then((response) => {
+      let genreBuilder = '';
+      let devBuilder = '';
+      gamePoster = response.background_image;
+      gameTitle = response.name;
+      gameYear = response.released.substring(0, 4);
+      // add loops for these two
+      for (let i = 0; i < response.genres.length; i++) {
+        if (i === response.genres.length - 1) {
+          genreBuilder += response.genres[i].name;
+        } else {
+          genreBuilder += response.genres[i].name + ', ';
+        }
+      }
+      for (let i = 0; i < response.developers.length; i++) {
+        if (i === response.developers.length - 1) {
+          devBuilder += response.developers[i].name;
+        } else {
+          devBuilder += response.developers[i].name + ', ';
+        }
+      }
+      gameGenre = genreBuilder;
+      gameDeveloper = devBuilder;
 
-  const displaySelected = function () {
-    // $('#search-results').empty();
-    $('#findMedia').addClass('hidden');
-    $('#inputDiv').removeClass('hidden');
-    // console.log(movieTitle);
-    // console.log(moviePoster);
-    $('#selectedMedia').html(movieTitle);
-    $('#selectedPoster').attr('src', moviePoster);
-  };
-
-  // The API object contains methods for each kind of request we'll make
-  const API = {
-    saveExample: function (example) {
-      return $.ajax({
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        type: 'POST',
-        url: 'api/examples',
-        data: JSON.stringify(example)
-      });
-    },
-    getExamples: function () {
-      return $.ajax({
-        url: 'api/examples',
-        type: 'GET'
-      });
-    },
-    deleteExample: function (id) {
-      return $.ajax({
-        url: 'api/examples/' + id,
-        type: 'DELETE'
-      });
-    }
-  };
-
-  // refreshExamples gets new examples from the db and repopulates the list
-  const refreshExamples = function () {
-    API.getExamples().then(function (data) {
-      const $examples = data.map(function (example) {
-        const $a = $('<a>')
-          .text(example.text)
-          .attr('href', '/example/' + example.id);
-
-        const $li = $('<li>')
-          .attr({
-            class: 'list-group-item',
-            'data-id': example.id
-          })
-          .append($a);
-
-        const $button = $('<button>')
-          .addClass('btn btn-danger float-right delete')
-          .text('ｘ');
-
-        $li.append($button);
-
-        return $li;
-      });
-
-      $exampleList.empty();
-      $exampleList.append($examples);
+      displaySelectedGame();
+      console.log(gamePoster);
+      console.log(response);
     });
-  };
+  }
+};
 
-  // handleFormSubmit is called whenever we submit a new example
-  // Save the new example to the db and refresh the list
-  const handleFormSubmit = function (event) {
-    event.preventDefault();
+const displaySelectedMovie = function () {
+  // $('#search-results').empty();
+  $('#findMedia').addClass('hidden');
+  $('#inputDiv').removeClass('hidden');
+  $('#selectedMedia').html(movieTitle);
+  $('#selectedPoster').attr('src', moviePoster);
+};
 
+const displaySelectedGame = function () {
+  // $('#search-results').empty();
+  $('#findMedia').addClass('hidden');
+  $('#inputDiv').removeClass('hidden');
+  $('#selectedMedia').html(gameTitle);
+  $('#selectedPoster').attr('src', gamePoster);
+};
+
+// The API object contains methods for each kind of request we'll make
+const API = {
+  saveExample: function (example) {
+    return $.ajax({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      type: 'POST',
+      url: 'api/examples',
+      data: JSON.stringify(example)
+    });
+  },
+  getExamples: function () {
+    return $.ajax({
+      url: 'api/examples',
+      type: 'GET'
+    });
+  },
+  deleteExample: function (id) {
+    return $.ajax({
+      url: 'api/examples/' + id,
+      type: 'DELETE'
+    });
+  }
+};
+
+// refreshExamples gets new examples from the db and repopulates the list
+const refreshExamples = function () {
+  API.getExamples().then(function (data) {
+    const $examples = data.map(function (example) {
+      const $a = $('<a>')
+        .text(example.text)
+        .attr('href', '/example/' + example.id);
+
+      const $li = $('<li>')
+        .attr({
+          class: 'list-group-item',
+          'data-id': example.id
+        })
+        .append($a);
+
+      const $button = $('<button>')
+        .addClass('btn btn-danger float-right delete')
+        .text('ｘ');
+
+      $li.append($button);
+
+      return $li;
+    });
+
+    $exampleList.empty();
+    $exampleList.append($examples);
+  });
+};
+
+const handleFormSubmit = function (event) {
+  event.preventDefault();
+
+  if (typeOfMedia === 'Movie') {
     example = {
       mediaType: 'Movie',
       image: moviePoster,
@@ -222,162 +308,7 @@ if (mediatype === 'Movie') {
     $examplePlot.val('');
     $exampleRating.val('');
     $exampleReview.val('');
-  };
-  const handleDeleteBtnClick = function () {
-    const idToDelete = $(this).parent().attr('data-id');
-
-    API.deleteExample(idToDelete).then(function () {
-      refreshExamples();
-    });
-  };
-
-  // Add event listeners to the submit and delete buttons
-  $submitBtn.on('click', handleFormSubmit);
-  $exampleList.on('click', '.delete', handleDeleteBtnClick);
-  $searchBtn.on('click', findMovie);
-
-  $(document).on('click', '.selectedMovieButton', function (event) {
-    getMovieDetails(event.target.value);
-  });
-} else if (mediatype === 'Game') {
-  const displayOptions = function (response) {
-    $('#search-results').empty(); // plug in the html of the unordered list of movies
-    $('#findMedia').removeClass('invisible');
-    $('#search-box').val('');
-    console.log(response.results.length);
-    for (let i = 0; i < response.results.length; i++) {
-      const currentGame = response.results[i];
-      // console.log(response);
-      const currentTitle = currentGame.name;
-      const currentYear = currentGame.released;
-      const currentPoster = currentGame.background_image;
-      const currentID = currentGame.id;
-
-      // this might be useless due to how we implement li in the append, consider removing when working
-      const newGame = document.createElement('li');
-      newGame.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
-      newGame.id = 'game-number' + i; // Would be the ID of each Game on the list displayed
-
-      // Would need classes and or ids to set up css in this.
-      const currentGameHTML =
-        `
-    <div>
-      <h4>${currentTitle}</h4>
-      <p>${currentYear}</p>
-      <img src="${currentPoster}">
-    </div>
-    `;
-
-      $('#search-results').append(`<li>${currentGameHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
-    }
-  };
-
-  // Unsure if there will be a different call for getGameDetails so as of right now this is its own function for the user case of selecting the Game off of the list of Games given by OMDB.
-
-  const findGame = function () {
-    // temp search box id
-    const searchTerm = $('#search-box').val();
-    const searchQueryUrl = 'https://api.rawg.io/api/games?key=7dd64f0797d74fb0981b46bc46e59163&search=' + searchTerm;
-
-    $.ajax({
-      url: searchQueryUrl,
-      method: 'GET'
-    }).then((response) => {
-      displayOptions(response);
-      // getGameDetails(response.Search[0].imdbID);
-      console.log(response);
-    });
-  };
-
-  const getGameDetails = function (id) {
-    const detailQueryUrl = 'https://api.rawg.io/api/games/' + id + '?key=7dd64f0797d74fb0981b46bc46e59163';
-    $.ajax({
-      url: detailQueryUrl,
-      method: 'GET'
-    }).then((response) => {
-      gamePoster = response.background_image;
-      gameTitle = response.name;
-      gameYear = response.released;
-      // add loops for these two
-      gameGenre = response.genre;
-      gameDeveloper = response.developers;
-
-      displaySelected();
-      console.log(gamePoster);
-      console.log(response);
-    });
-  };
-
-  const displaySelected = function () {
-    // $('#search-results').empty();
-    $('#findMedia').addClass('hidden');
-    $('#inputDiv').removeClass('hidden');
-    // console.log(GameTitle);
-    // console.log(GamePoster);
-    $('#selectedMedia').html(gameTitle);
-    $('#selectedPoster').attr('src', gamePoster);
-  };
-
-  // The API object contains methods for each kind of request we'll make
-  const API = {
-    saveExample: function (example) {
-      return $.ajax({
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        type: 'POST',
-        url: 'api/examples',
-        data: JSON.stringify(example)
-      });
-    },
-    getExamples: function () {
-      return $.ajax({
-        url: 'api/examples',
-        type: 'GET'
-      });
-    },
-    deleteExample: function (id) {
-      return $.ajax({
-        url: 'api/examples/' + id,
-        type: 'DELETE'
-      });
-    }
-  };
-
-  // refreshExamples gets new examples from the db and repopulates the list
-  const refreshExamples = function () {
-    API.getExamples().then(function (data) {
-      const $examples = data.map(function (example) {
-        const $a = $('<a>')
-          .text(example.text)
-          .attr('href', '/example/' + example.id);
-
-        const $li = $('<li>')
-          .attr({
-            class: 'list-group-item',
-            'data-id': example.id
-          })
-          .append($a);
-
-        const $button = $('<button>')
-          .addClass('btn btn-danger float-right delete')
-          .text('ｘ');
-
-        $li.append($button);
-
-        return $li;
-      });
-
-      $exampleList.empty();
-      $exampleList.append($examples);
-    });
-  };
-
-  // handleFormSubmit is called whenever we submit a new example
-  // Save the new example to the db and refresh the list
-  const handleFormSubmit = function (event) {
-    event.preventDefault();
-
+  } else if (typeOfMedia === 'Game') {
     example = {
       mediaType: 'Video Game',
       image: gamePoster,
@@ -410,24 +341,26 @@ if (mediatype === 'Movie') {
     $examplePlot.val('');
     $exampleRating.val('');
     $exampleReview.val('');
-  };
-  const handleDeleteBtnClick = function () {
-    const idToDelete = $(this).parent().attr('data-id');
+  }
+};
 
-    API.deleteExample(idToDelete).then(function () {
-      refreshExamples();
-    });
-  };
+const handleDeleteBtnClick = function () {
+  const idToDelete = $(this).parent().attr('data-id');
 
-  // Add event listeners to the submit and delete buttons
-  $submitBtn.on('click', handleFormSubmit);
-  $exampleList.on('click', '.delete', handleDeleteBtnClick);
-  $searchBtn.on('click', findGame);
-
-  $(document).on('click', '.selectedMovieButton', function (event) {
-    getGameDetails(event.target.value);
+  API.deleteExample(idToDelete).then(function () {
+    refreshExamples();
   });
 };
+
+$searchBtn.on('click', findMedia);
+
+$submitBtn.on('click', handleFormSubmit);
+$exampleList.on('click', '.delete', handleDeleteBtnClick);
+
+$(document).on('click', '.selectedMovieButton', function (event) {
+  getMediaDetails(event.target.value);
+});
+
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
 // not sure if it adds stuff to db
