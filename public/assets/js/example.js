@@ -54,7 +54,7 @@ const findMedia = function () {
 
   if (typeOfMedia === 'Movie') {
     const searchTerm = $('#search-box').val();
-    const searchQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
+    const searchQueryUrl = 'https://www.omdbapi.com/?apikey=f5874e7b&s=' + searchTerm;
 
     $.ajax({
       url: searchQueryUrl,
@@ -80,7 +80,7 @@ const findMedia = function () {
     const searchTerm = $('#search-box').val();
     const responseFields = 'name,id,image,description,deck,cover_date,volume,issue_number,publisher';
     const searchQueryUrl = 'https://cors-anywhere.herokuapp.com/http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816' +
-    '&format=json&field_list=' + responseFields + '$resources=' + 'volume' + '&query=' + searchTerm;
+      '&format=json&field_list=' + responseFields + '$resources=' + 'volume' + '&query=' + searchTerm;
 
     $.ajax({
       url: searchQueryUrl,
@@ -190,7 +190,7 @@ const displayOptionsComic = function (response) {
 
 const getMediaDetails = function (id) {
   if (typeOfMedia === 'Movie') {
-    const detailQueryUrl = 'http://www.omdbapi.com/?apikey=f5874e7b&i=' + id;
+    const detailQueryUrl = 'https://www.omdbapi.com/?apikey=f5874e7b&i=' + id;
     $.ajax({
       url: detailQueryUrl,
       method: 'GET'

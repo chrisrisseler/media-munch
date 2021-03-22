@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require('./models');
 
-app.use(cookieParser());
+app.use(cookieParser('secret'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
