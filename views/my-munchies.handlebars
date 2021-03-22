@@ -1,34 +1,33 @@
-
-<div class="grid md:grid-cols-4 rows-1 gap-2" id="munchies-grid">
-  <div class="col-span-1 flex items-stretch gutter"></div>
-  <div class="col-span-2 flex items-stretch md:items-center">
-    <table class="table-auto" id="munchies-table">
-      <thead>
-        <tr>
-          <th class="border border-grey ...">Title</th>
-          <th class="border border-grey ...">Year</th>
-          <th class="border border-grey ...">Genre</th>
-          <th class="border border-grey ...">Media type</th>
-          <th class="border border-grey ...">Rating</th>
-          {{!-- Empty column to hold delete button --}}
-          <th id="blank-header"></th>
-        </tr>
-      </thead>
-      <tbody class="munchies">
-        {{#each examples}}
-        <tr>
-          <td class="transition duration-500 ease-in-out bg-white-100 hover:bg-purple-100 transform hover:-translate-y-1 hover:scale-110 ... border border-grey ..."><a href="example/{{this.id}}">{{this.title}}</a></td>
-          <td class="border border-grey ..."  id="munchie-year">{{this.year}}</td>
-          <td class="border border-grey ...">{{this.genre}}</td>
-          <td class="border border-grey ...">{{this.mediaType}}</td>
-          <td class="border border-grey ..." id="munchie-rating">{{this.rating}}</td>
-          <td><button id="delete-munchie" class="btn btn-danger delete"><i class="fa fa-trash fa-lg transition duration-200 ease-in-out bg-white-100 hover:color-red transform" aria-hidden="true"></i></button></td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-  <div class="col-span-1 flex items-stretch gutter"></div>
-</div>
+<section class="grid md:grid-cols-4 rows-1 gap-2 min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12" id="munchies-grid">
+  <section class="col-span-1 flex items-stretch gutter"></section>
+  <section class="col-span-2 flex items-stretch md:items-center">
+    <section class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <table class="table-auto" id="munchies-table">
+        <thead>
+          <tr>
+            <th class="border border-grey bg-indigo-500 ...">Title</th>
+            <th class="border border-grey bg-indigo-500 ...">Year</th>
+            <th class="border border-grey bg-indigo-500 ...">Genre</th>
+            <th class="border border-grey bg-indigo-500 ...">Media type</th>
+            <th class="border border-grey bg-indigo-500 ...">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="munchies">
+          {{#each examples}}
+          <tr>
+            <td
+              class="transition duration-500 ease-in-out bg-white-100 hover:bg-purple-100 transform hover:-translate-y-1 hover:scale-110 ... border border-grey ...">
+              <a href="example/{{this.id}}">{{this.title}}</a></td>
+            <td class="border border-grey ..." id="munchie-year">{{this.year}}</td>
+            <td class="border border-grey ...">{{this.genre}}</td>
+            <td class="border border-grey ...">{{this.mediaType}}</td>
+            <td class="border border-grey ..." id="munchie-rating">{{this.rating}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </section>
+  </section>
+</section>
 
 <script src="/assets/js/example.js"></script>
