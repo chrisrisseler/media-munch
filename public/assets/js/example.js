@@ -32,6 +32,11 @@ let gameDeveloper;
 let gameGenre;
 let gamePoster;
 
+let comicTitle;
+let comicYear;
+let comicPublisher;
+let comicImage;
+
 const showDropDown = function () {
   $('#media-type').toggleClass('hidden');
 };
@@ -78,7 +83,7 @@ const findMedia = function () {
     });
   } else if (typeOfMedia === 'Comic') {
     const searchTerm = $('#search-box').val();
-    const responseFields = 'name,id,image,description,deck,cover_date,volume,issue_number,publisher';
+    const responseFields = 'name,id,image,description,deck,start_year,volume,publisher';
     const searchQueryUrl = 'https://cors-anywhere.herokuapp.com/http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816' +
       '&format=json&field_list=' + responseFields + '$resources=' + 'volume' + '&query=' + searchTerm;
 
@@ -165,7 +170,7 @@ const displayOptionsComic = function (response) {
     const currentComic = response.results[i];
     // console.log(response);
     const currentTitle = currentComic.name;
-    const currentYear = currentComic.released;
+    const currentYear = currentComic.start_year;
     const currentPoster = currentComic.image.medium_url;
     const currentID = currentComic.id;
 
@@ -241,6 +246,24 @@ const getMediaDetails = function (id) {
       console.log(gamePoster);
       console.log(response);
     });
+  } else if (typeOfMedia === 'Comic') {
+    const responseFields = 'name,id,image,description,deck,start_year,volume,publisher';
+    const searchQueryUrl = 'https://cors-anywhere.herokuapp.com/http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816' +
+      '&format=json&field_list=' + responseFields + '$resources=' + 'volume' + '&query=' + id;
+
+    $.ajax({
+      url: searchQueryUrl,
+      method: 'GET'
+    }).then((response) => {
+      comicImage = response.image.medium_url;
+      comicTitle = response.name;
+      comicYear = response.start_year;
+      comicPublisher = response.publisher.name;
+
+      displaySelectedComic();
+      console.log(gamePoster);
+      console.log(response);
+    });
   }
 };
 
@@ -258,6 +281,14 @@ const displaySelectedGame = function () {
   $('#inputDiv').removeClass('hidden');
   $('#selectedMedia').html(gameTitle);
   $('#selectedPoster').attr('src', gamePoster);
+};
+
+const displaySelectedComic = function () {
+  // $('#search-results').empty();
+  $('#findMedia').addClass('hidden');
+  $('#inputDiv').removeClass('hidden');
+  $('#selectedMedia').html(comicTitle);
+  $('#selectedPoster').attr('src', comicImage);
 };
 
 // The API object contains methods for each kind of request we'll make
@@ -361,6 +392,38 @@ const handleFormSubmit = function (event) {
       year: gameYear,
       author: gameDeveloper,
       genre: gameGenre,
+      synopsis: $examplePlot.val().trim(),
+      rating: $exampleRating.val().trim(),
+      review: $exampleReview.val().trim(),
+      UserId: window.userId
+    };
+    console.log(example);
+
+    // if (!(example.text && example.description)) {
+    //   alert('You must enter an example text and description!');
+    //   return;
+    // }
+
+    API.saveExample(example).then(function () {
+      refreshExamples();
+    });
+
+    $exampleTitle.val('');
+    $exampleYear.val('');
+    $exampleAuthor.val('');
+    $exampleDirector.val('');
+    $exampleCast.val('');
+    $exampleGenre.val('');
+    $examplePlot.val('');
+    $exampleRating.val('');
+    $exampleReview.val('');
+  } else if (typeOfMedia === 'Comic') {
+    example = {
+      mediaType: 'Comic',
+      image: comicImage,
+      title: comicTitle,
+      year: comicYear,
+      author: comicPublisher,
       synopsis: $examplePlot.val().trim(),
       rating: $exampleRating.val().trim(),
       review: $exampleReview.val().trim(),
