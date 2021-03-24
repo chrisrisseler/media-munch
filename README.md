@@ -12,23 +12,23 @@ Are you a vociferous consumer of entertainment media? Would you like a way to ke
 At Media Munch, you can . . .
 1. Log in.
 
-![alt text](./assets/images/screenshot1.png)
+!(public/assets/images/screenshot1.png)
 
-![alt text](./assets/images/screenshot2.png)
+!(public/assets/images/screenshot2.png)
 
-![alt text](./assets/images/screenshot3.png)
+!(public/assets/images/screenshot3.png)
 
 2. Add a munchie. 
 
-![alt text](./assets/images/screenshot4.png)
+!(public/assets/images/screenshot4.png)
 
 3. View a list of your munchies. 
 
-![alt text](./assets/images/screenshot5.png)
+!(puiblic/assets/images/screenshot5.png)
 
 4. And click on the title for more details. 
 
-![alt text](./assets/images/screenshot6.png)
+!(public/assets/images/screenshot6.png)
 
 ## Technologies
 Media Munch uses node.js, Sequelize, JS, HTML5, and the Tailwind CSS framework. In the current version, it draws information from three APIs: [OMDB](http://omdbapi.com/), [RAWG](https://api.rawg.io/docs/), and [Comicvine](https://comicvine.gamespot.com/). 
