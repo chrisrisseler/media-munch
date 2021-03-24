@@ -32,6 +32,11 @@ let gameDeveloper;
 let gameGenre;
 let gamePoster;
 
+let comicTitle;
+let comicYear;
+let comicPublisher;
+let comicImage;
+
 const showDropDown = function () {
   $('#media-type').toggleClass('hidden');
 };
@@ -78,7 +83,7 @@ const findMedia = function () {
     });
   } else if (typeOfMedia === 'Comic') {
     const searchTerm = $('#search-box').val();
-    const responseFields = 'name,id,image,description,deck,cover_date,volume,issue_number,publisher';
+    const responseFields = 'name,id,image,description,deck,start_year,volume,publisher';
     const searchQueryUrl = 'https://cors-anywhere.herokuapp.com/http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816' +
       '&format=json&field_list=' + responseFields + '&resources=' + 'volume' + '&query=' + searchTerm;
 
@@ -87,7 +92,7 @@ const findMedia = function () {
       method: 'GET'
     }).then((response) => {
       displayOptionsComic(response);
-      console.log(response);
+      console.log(response.results);
     });
   };
 };
@@ -165,10 +170,13 @@ const displayOptionsComic = function (response) {
     const currentComic = response.results[i];
     // console.log(response);
     const currentTitle = currentComic.name;
-    const currentYear = currentComic.released;
+    const currentYear = currentComic.start_year;
     const currentPoster = currentComic.image.medium_url;
     const currentID = currentComic.id;
-
+    // const comicTitleNum = {
+    //   name: currentTitle,
+    //   number: i
+    // };
     // this might be useless due to how we implement li in the append, consider removing when working
     const newComic = document.createElement('li');
     newComic.classList += ''; // Would add any classes needed to add for styling/positioning/etc of the list item
@@ -185,6 +193,9 @@ const displayOptionsComic = function (response) {
   `;
 
     $('#search-results').append(`<li>${currentComicHTML}</li><button id=result-select-${i} value="${currentID}" class="btn btn-primary w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm selectedMovieButton">Select</button>`);
+    comicImage = currentPoster;
+    comicTitle = currentTitle;
+    comicYear = currentYear;
   }
 };
 
@@ -241,8 +252,32 @@ const getMediaDetails = function (id) {
       console.log(gamePoster);
       console.log(response);
     });
+  } else if (typeOfMedia === 'Comic') {
+    // console.log('1111' + id);
+    // const { name, number } = id;
+    // console.log(name);
+    // console.log(number);
+    // const responseFields = 'name,id,image,description,deck,start_year,volume,publisher';
+    // const searchQueryUrl = 'https://cors-anywhere.herokuapp.com/http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816' +
+    //   '&format=json&field_list=' + responseFields + '&resources=' + 'volume' + '&query=' + name;
+
+    // $.ajax({
+    //   url: searchQueryUrl,
+    //   method: 'GET'
+    // }).then((response) => {
+    // console.log('2222' + response.results[id.number]);
+    // comicImage = response.results[number].image.medium_url;
+    // comicTitle = response.results[number].name;
+    // comicYear = response.results[number].start_year;
+    // comicPublisher = response.results[number].publisher.name;
+
+    displaySelectedComic();
+    // console.log(gamePoster);
+    // console.log(response);
   }
 };
+// }
+// };
 
 const displaySelectedMovie = function () {
   // $('#search-results').empty();
@@ -258,6 +293,14 @@ const displaySelectedGame = function () {
   $('#inputDiv').removeClass('hidden');
   $('#selectedMedia').html(gameTitle);
   $('#selectedPoster').attr('src', gamePoster);
+};
+
+const displaySelectedComic = function () {
+  // $('#search-results').empty();
+  $('#findMedia').addClass('hidden');
+  $('#inputDiv').removeClass('hidden');
+  $('#selectedMedia').html(comicTitle);
+  $('#selectedPoster').attr('src', comicImage);
 };
 
 // The API object contains methods for each kind of request we'll make
@@ -375,6 +418,40 @@ const handleFormSubmit = function (event) {
 
     API.saveExample(example).then(function () {
       refreshExamples();
+    });
+
+    $exampleTitle.val('');
+    $exampleYear.val('');
+    $exampleAuthor.val('');
+    $exampleDirector.val('');
+    $exampleCast.val('');
+    $exampleGenre.val('');
+    $examplePlot.val('');
+    $exampleRating.val('');
+    $exampleReview.val('');
+  } else if (typeOfMedia === 'Comic') {
+    example = {
+      mediaType: 'Comic',
+      image: comicImage,
+      title: comicTitle,
+      year: comicYear,
+      author: comicPublisher,
+      synopsis: $examplePlot.val().trim(),
+      rating: $exampleRating.val().trim(),
+      review: $exampleReview.val().trim(),
+      UserId: window.userId
+    };
+    console.log(example);
+
+    // if (!(example.text && example.description)) {
+    //   alert('You must enter an example text and description!');
+    //   return;
+    // }
+
+    API.saveExample(example).then(function () {
+      refreshExamples();
+      // $('#inputDiv').addClass('hidden')
+      // $('#findMedia').addClass('invisible');
     });
 
     $exampleTitle.val('');
