@@ -464,6 +464,7 @@ const handleFormSubmit = function (event) {
     $exampleRating.val('');
     $exampleReview.val('');
   }
+  window.location.reload();
 };
 
 const handleDeleteBtnClick = function () {
