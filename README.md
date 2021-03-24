@@ -12,23 +12,23 @@ Are you a vociferous consumer of entertainment media? Would you like a way to ke
 At Media Munch, you can . . .
 1. Log in.
 
-(./assets/images/screenshot1.png)
+![alt text](./assets/images/screenshot1.png)
 
-(./assets/images/screenshot2.png)
+![alt text](./assets/images/screenshot2.png)
 
-(./assets/images/screenshot3.png)
+![alt text](./assets/images/screenshot3.png)
 
 2. Add a munchie. 
 
-(./assets/images/screenshot4.png)
+![alt text](./assets/images/screenshot4.png)
 
 3. View a list of your munchies. 
 
-(./assets/images/screenshot5.png)
+![alt text](./assets/images/screenshot5.png)
 
 4. And click on the title for more details. 
 
-(./assets/images/screenshot6.png)
+![alt text](./assets/images/screenshot6.png)
 
 ## Technologies
 Media Munch uses node.js, Sequelize, JS, HTML5, and the Tailwind CSS framework. In the current version, it draws information from three APIs: [OMDB](http://omdbapi.com/), [RAWG](https://api.rawg.io/docs/), and [Comicvine](https://comicvine.gamespot.com/). 
@@ -37,9 +37,9 @@ Media Munch uses node.js, Sequelize, JS, HTML5, and the Tailwind CSS framework. 
 To launch the app on a local server, open the dedicated terminal window in the appropriate VSCode folder and enter node server.js in the CLI. 
 
 ## Contributors
-[Chris Rissler](https://github.com/chrisrisseler)
-[Christian Wittorp](https://github.com/cwwittor)
-[Jon Free](https://github.com/freejonm)
+[Chris Rissler](https://github.com/chrisrisseler), 
+[Christian Wittorp](https://github.com/cwwittor), 
+[Jon Free](https://github.com/freejonm), 
 [Samantha Lisk](https://github.com/smlisk0630)
 
 
